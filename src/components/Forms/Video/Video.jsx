@@ -19,7 +19,7 @@ export default class Video extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    // "service" is not correct/"createStory" has not be created yet
+    // "service" is not correct/"createVideo" has not be created yet
     service.createVideo(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet

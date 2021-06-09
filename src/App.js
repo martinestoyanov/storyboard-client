@@ -89,7 +89,7 @@ class App extends React.Component {
             exact
             path={PATHS.SIGNUPPAGE}
             authenticate={this.authenticate}
-            component={Signup}
+            render={(props) => <Signup {...props} />}
           />
           <NormalRoute
             exact

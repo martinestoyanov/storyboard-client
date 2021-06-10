@@ -7,6 +7,7 @@ import * as PATHS from "../utils/paths";
 export default class Signup extends Component {
   state = {
     username: "",
+    email: "",
     password: "",
     error: null,
   };
@@ -22,6 +23,7 @@ export default class Signup extends Component {
     event.preventDefault();
     const credentials = {
       username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     };
     signup(credentials).then((res) => {
@@ -48,6 +50,17 @@ export default class Signup extends Component {
             name="username"
             placeholder="Text"
             value={this.state.username}
+            onChange={this.handleInputChange}
+            required
+          />
+
+          <label htmlFor="input-email">Email</label>
+          <input
+            id="input-email"
+            type="email"
+            name="email"
+            placeholder="example@email.com"
+            value={this.state.email}
             onChange={this.handleInputChange}
             required
           />

@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LogIn from "./pages/LogIn";
 import ProtectedPage from "./pages/ProtectedPage";
-import Signup from "./pages/Signup";
+import Signup from "./pages/Signup.jsx";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
@@ -89,7 +89,7 @@ class App extends React.Component {
             exact
             path={PATHS.SIGNUPPAGE}
             authenticate={this.authenticate}
-            render={(props) => <Signup {...props} />}
+            component={Signup}
           />
           <NormalRoute
             exact

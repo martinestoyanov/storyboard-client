@@ -1,19 +1,21 @@
+@import url("../../App.css");
+
 nav {
   display: flex;
   padding: 1em;
   justify-content: space-around;
   flex-wrap: wrap;
-  background: #282c34;
+  background: none;
   font-weight: 600;
 }
 
 .nav__projectName {
-  color: #e4f9ff;
+  color: var(--white);
   text-decoration: none;
 }
 
 .authLink {
-  color: #61dafb;
+  color: var(--white);
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
@@ -22,8 +24,14 @@ nav {
   padding: 1em;
 }
 
+.nav__projectName,
+.authLink {
+  transition: transform .5s ease;
+}
+
+.nav__projectName:hover,
 .authLink:hover {
-  color: #ffffff;
+  transform: scale(1.15);
 }
 
 .nav-logoutbtn {
@@ -31,12 +39,12 @@ nav {
   font-weight: inherit;
   padding: 0.5em 1em;
   margin-left: 1em;
-  background-color: #5595ff;
-  box-shadow: 0 0 5px 0 aliceblue;
+  background-color: var(--color-main);
+  box-shadow: 0 0 5px 0 var(--color-dark);
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  color: #e3f2ff;
+  color: var(--white);
   transition: all 0.2s ease-in-out;
   position: sticky;
   top: 0;
@@ -44,5 +52,5 @@ nav {
 
 .nav-logoutbtn:hover {
   transform: scale(1.05);
-  background-color: #d13e3e;
+  background-color: var(--color-dark);
 }

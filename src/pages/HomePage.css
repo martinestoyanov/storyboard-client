@@ -1,0 +1,17 @@
+@import url("../App.css");
+
+.App {
+    margin: 0 auto;
+    max-width: 80vw;
+    font-size: 1.3em;
+}
+
+@media (max-width: 768px) {
+    .App {
+        font-size: 1em;
+    }
+}
+
+.App p {
+    line-height: 1.5em;
+}

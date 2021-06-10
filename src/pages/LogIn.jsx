@@ -3,6 +3,7 @@ import { login } from "../services/auth";
 import "./Signup";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
+import "./Login.css";
 
 export default class Login extends Component {
   state = {
@@ -37,7 +38,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-container">
         <h1>Log In</h1>
         <form onSubmit={this.handleFormSubmission} className="signup__form">
           <label htmlFor="input-username">Username</label>

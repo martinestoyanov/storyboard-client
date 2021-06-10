@@ -1,0 +1,40 @@
+@import url("../App.css");
+
+.login-container {
+    margin: 15vh auto;
+    border: 3px solid var(--color-main);
+    border-radius: 15px;
+    max-width: 30vw;
+    color: var(--color-main);
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding: 5vh 0;
+
+    
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 80vw;
+    }
+}
+
+.signup__form {
+    display: flex;
+    flex-flow: column;
+}
+
+.signup__form input {
+    margin-bottom: 2vh;
+}
+
+.signup__form button {
+    font-size: 1.2em;
+    padding: .5vh 1vw;
+    background-color: var(--color-main);
+    border-color: var(--color-dark);
+    color: var(--white);
+}

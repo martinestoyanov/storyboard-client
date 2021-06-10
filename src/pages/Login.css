@@ -33,7 +33,7 @@
 
 .signup__form button {
     font-size: 1.2em;
-    padding: .5vh 1vw;
+    padding: .5vh .5vw;
     background-color: var(--color-main);
     border-color: var(--color-dark);
     color: var(--white);

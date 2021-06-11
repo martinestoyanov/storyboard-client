@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { signup } from "../services/auth";
 import "./auth.css";
+import "./Login.css";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
@@ -40,9 +41,9 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-container">
         <h1>Sign Up</h1>
-        <form onSubmit={this.handleFormSubmission} className="auth__form">
+        <form onSubmit={this.handleFormSubmission} className="auth__form signup__form">
           <label htmlFor="input-username">Username</label>
           <input
             id="input-username"

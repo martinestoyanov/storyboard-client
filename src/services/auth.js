@@ -29,6 +29,7 @@ const authService = axios.create({
 });
 
 export function login(credentials) {
+  // console.log(credentials);
   return authService
     .post("/login", credentials)
     .then(successStatus)

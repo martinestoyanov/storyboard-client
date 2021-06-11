@@ -30,6 +30,8 @@ export default class Login extends Component {
       if (!res.status) {
         // handle not great request
       }
+      // console.log(res); // currently internal server error
+      // console.log(CONSTS);
       localStorage.setItem(CONSTS.ACCESS_TOKEN, res.data.accessToken);
       this.props.authenticate(res.data.user);
       this.props.history.push(PATHS.HOMEPAGE);

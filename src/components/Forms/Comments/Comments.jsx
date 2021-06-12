@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import commentServices from "../../../services/Comment";
 import "./Comments.css";
 
 export default class Comments extends Component {
@@ -16,8 +17,10 @@ export default class Comments extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
+    //-----------------------------BOTH CREATED! -----------------------
     // "service" is not correct/"createComment" has not be created yet
-    service.createComment(this.state).then((responseFromDB) => {
+    //------------------------------------------------------------------
+    commentServices.createComment(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
       this.props.push("/storytellers");

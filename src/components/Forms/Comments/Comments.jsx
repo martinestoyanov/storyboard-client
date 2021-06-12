@@ -20,7 +20,7 @@ export default class Comments extends Component {
     //-----------------------------BOTH CREATED! -----------------------
     // "service" is not correct/"createComment" has not be created yet
     //------------------------------------------------------------------
-    commentServices.create(this.state).then((responseFromDB) => {
+    commentServices.createComment(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
       this.props.push("/storytellers");

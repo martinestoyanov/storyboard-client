@@ -17,9 +17,7 @@ export default class Comments extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    //-----------------------------BOTH CREATED! -----------------------
-    // "service" is not correct/"createComment" has not be created yet
-    //------------------------------------------------------------------
+
     commentServices.createComment(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?

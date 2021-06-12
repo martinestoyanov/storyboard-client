@@ -9,8 +9,9 @@ body, html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("./images/wooden-desk.jpg");
+  background-attachment: fixed;
   background-position: center;
-  background-repeat:repeat-y;
+  background-repeat: no-repeat;
   background-size: cover;
 } 
 

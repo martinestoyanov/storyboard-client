@@ -38,3 +38,36 @@ export function createComment(info) {
     })
     .catch((err) => internalServerError(err));
 }
+
+export function getComment(id) {
+  return commentService
+    .get(`/${id}`, {
+      headers: {
+        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      },
+    })
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
+export function updateComment(id) {
+  return commentService
+    .post(`/${id}/update`, {
+      headers: {
+        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      },
+    })
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
+export function deleteComment(id) {
+  return commentService
+    .post(`/${id}/delete`, {
+      headers: {
+        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      },
+    })
+    .then(successStatus)
+    .catch(internalServerError);
+}

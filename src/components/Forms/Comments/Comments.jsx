@@ -17,11 +17,11 @@ export default class Comments extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     // "service" is not correct/"createComment" has not be created yet
-    service.createComment(this.state).then((responseFromDB) => {
-      console.log(responseFromDB);
-      //   "/storytellers" has not been created yet/Redirect somewhere else?
-      this.props.push("/storytellers");
-    });
+    // service.createComment(this.state).then((responseFromDB) => {
+    //   console.log(responseFromDB);
+    //   //   "/storytellers" has not been created yet/Redirect somewhere else?
+    //   this.props.push("/storytellers");
+    // });
   };
 
   render() {

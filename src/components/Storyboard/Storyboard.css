@@ -1,0 +1,54 @@
+@import url("../../App.css");
+
+.storyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 20vw);
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 2vh 1vw;
+    justify-content: center;
+    color: var(--color-main);
+    
+}
+
+.panel {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--color-main);
+    box-shadow: .5vw 1vh rgba(20, 5, 5, 0.7);
+    border-radius: 15px;
+    transition: transform .5s ease;
+}
+
+.panel:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.panel img {
+    max-width: 10vw;
+    max-height: auto;
+}
+
+.panel p {
+    font-size: .75em;
+    line-height: .5em;
+    color: var(--color-light);
+}
+
+.genre-panel {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.panel-link {
+    text-decoration: none;
+    color: var(--color-light);
+}
+
+.panel-link h2 {
+    color: var(--color-main);
+}
+
+.genre-link:hover {
+    text-decoration: underline;
+}

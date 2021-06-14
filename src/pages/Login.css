@@ -11,9 +11,7 @@
     align-items: center;
     justify-content: center;
     flex-flow: column;
-    padding: 5vh 0;
-
-    
+    padding: 5vh 0;    
 }
 
 @media (max-width: 768px) {

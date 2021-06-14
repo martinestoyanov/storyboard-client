@@ -27,7 +27,7 @@ export default class Storyboard extends Component {
         <div className="panel">
           <Link to={PATHS.INSPIRATION} className="panel-link">
             <h2>Look for Inspiration</h2>
-            <img src={Thinking} alt="Look for Inspiration" />
+            <img src={Thinking} alt="Look for Inspiration" className="inspiration-img" />
           </Link>
         </div>
         <div className="panel">

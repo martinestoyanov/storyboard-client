@@ -52,6 +52,12 @@
     text-decoration: underline;
 }
 
+@media (max-width: 1600px) {
+    .panel p {
+        font-size: .6em;
+    }
+}
+
 @media (max-width: 1024px) {
     .storyboard {
         display: flex;
@@ -73,7 +79,7 @@
     }
 
     .panel p {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 }
 

@@ -18,30 +18,27 @@ export default class Story extends Component {
 
   selectionHandler = (event) => {};
 
-  submitHandler = (event) => {
-    event.preventDefault();
-    // "service" is not correct/"createStory" has not be created yet
-    service.createStory(this.state).then((responseFromDB) => {
-      console.log(responseFromDB);
-      //   "/storytellers" has not been created yet
-      this.props.push("/storytellers");
-    });
-  };
+  // submitHandler = (event) => {
+  //   event.preventDefault();
+  //   // "service" is not correct/"createStory" has not be created yet
+  //   service.createStory(this.state).then((responseFromDB) => {
+  //     console.log(responseFromDB);
+  //     //   "/storytellers" has not been created yet
+  //     this.props.push("/storytellers");
+  //   });
+  // };
 
   render() {
     return (
       <div>
-        <p>
-          Feel free to select a genre for your short story, give it a title, and
-          let the magic happen!
-        </p>
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler} className="story-form">
           <input
             type="text"
             name="title"
             placeholder="Title"
             value={this.state.title}
             onChange={this.changeHandler}
+            className="story-form-title"
           />
           <select
             name="genre"
@@ -64,10 +61,11 @@ export default class Story extends Component {
             placeholder="Start your story here."
             value={this.state.text}
             onChange={this.changeHandler}
-            cols="30"
-            rows="10"
+            // rows="26"
           ></textarea>
-          <button type="submit">Post Your Story!</button>
+          <div>
+            <button type="submit">Post Story</button>
+          </div>
         </form>
       </div>
     );

@@ -4,15 +4,15 @@ import "./ProfilePage.css";
 
 export default class ProfilePage extends Component {
   render() {
+    // console.log(this.props.user);
     const {
       username,
-      pictureURL: pic,
+      //   pictureURL: pic,
       email,
       stories,
       videos,
       createdAt,
     } = this.props.user;
-    console.log(this.props.user);
     const memberSince = dateFormat(createdAt, "mmmm dS, yyyy");
     return (
       <div>
@@ -31,6 +31,16 @@ export default class ProfilePage extends Component {
             <p>Member since: {memberSince}</p>
             <p>Short stories posted: {stories.length}</p>
             <p>Movies posted: {videos.length}</p>
+          </div>
+        </div>
+        <div className="user-content">
+          <div className="user-stories">
+            <h3>{username}'s Recent Short Stories</h3>
+            <p>List of recent stories posted</p>
+          </div>
+          <div className="user-movies">
+            <h3>{username}'s Recent Movies</h3>
+            <p>List of recent movies posted</p>
           </div>
         </div>
       </div>

@@ -20,16 +20,63 @@ h3 {
     font-size: 1.5em;
 }
 
+.profile-pic {
+    display: flex;
+    flex-flow: row;
+    align-items: baseline;
+}
+
+.edit-profile-pic img,
 .profile-pic img {
     max-width: 20vw;
     max-height: auto;
-    border: 5px solid var(--color-light);
+    border: 5px solid var(--color-dark);
     box-shadow: .5vw 1.5vh rgba(20, 5, 5, 0.7);
+    
+}
+
+.profile-pic img {
+    margin-right: 1vw;
+}
+
+.profile-pic a {
+    color: var(--white);
+    font-size: .75em;
 }
 
 .user-content {
     margin-top: 5vh;
 }
+
+.edit-profile-form {
+    margin: 5vh auto;
+    border: 3px solid var(--color-main);
+    border-radius: 15px;
+    max-width: 30vw;
+    color: var(--color-main);
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.edit-profile-form button {
+    margin: 1vh 0 2vh;
+}
+
+.form-input {
+    display: flex;
+    flex-flow: column;
+    margin: 1vh 0;
+}
+
+.form-input input {
+    width: 15vw;
+    margin-top: 1vh;
+    line-height: 1.5em;
+}
+
 
 @media (max-width: 768px) {
     .profile,

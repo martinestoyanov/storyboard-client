@@ -16,3 +16,4 @@ export const SCIFI = "/sci-fi";
 export const THRILLERMYSTERY = "/thriller-mystery";
 export const RANDOM = "/random-story";
 export const PROFILEPAGE = `${PROTECTEDPAGE}/profile`;
+export const EDITPROFILE = `${PROTECTEDPAGE}/profile/edit`;

@@ -1,0 +1,55 @@
+@import "../../App.css";
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.75em;
+    text-decoration: underline;
+}
+
+.profile,
+.user-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.profile p {
+    font-size: 1.5em;
+}
+
+.profile-pic img {
+    max-width: 20vw;
+    max-height: auto;
+    border: 5px solid var(--color-light);
+    box-shadow: .5vw 1.5vh rgba(20, 5, 5, 0.7);
+}
+
+.user-content {
+    margin-top: 5vh;
+}
+
+@media (max-width: 768px) {
+    .profile,
+    .user-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+
+    .profile-pic img {
+        max-width: 70vw;
+        max-height: auto;
+        box-shadow: 1.5vw 1.5vh rgba(20, 5, 5, 0.7);
+    }
+}
+
+@media (max-width: 1024px) {
+    .profile-pic img {
+        max-width: 40vw;
+        max-height: auto;
+    }
+}

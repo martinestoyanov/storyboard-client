@@ -12,6 +12,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import WriteStoryPage from "./pages/WriteStoryPage/WriteStoryPage.jsx";
 import TopContentPage from "./pages/TopContentPage/TopContentPage.jsx";
 import InspirationPage from "./pages/InspirationPage/InspirationPage.jsx";
+import RandomPage from "./pages/RandomPage/RandomPage.jsx";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
@@ -112,6 +113,12 @@ class App extends React.Component {
             path={PATHS.INSPIRATION}
             authenticate={this.authenticate}
             component={InspirationPage}
+          />
+          <NormalRoute
+            exact
+            path={PATHS.RANDOM}
+            authenticate={this.authenticate}
+            component={RandomPage}
           />
           <ProtectedRoute
             exact

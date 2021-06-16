@@ -7,7 +7,6 @@
     grid-gap: 2vh 1vw;
     justify-content: center;
     color: var(--color-main);
-    
 }
 
 .panel {
@@ -24,7 +23,7 @@
 }
 
 .panel img {
-    max-width: 10vw;
+    width: 10vw;
     max-height: auto;
 }
 
@@ -51,4 +50,53 @@
 
 .genre-link:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 1600px) {
+    .panel p {
+        font-size: .6em;
+    }
+}
+
+@media (max-width: 1024px) {
+    .storyboard {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .panel {
+        height: 29vh;
+        width: 60vw;
+    }
+
+    .panel img {
+        width: 25vw;
+    }
+
+    .book-img {
+        margin-top: 3vh;
+    }
+
+    .panel p {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 720px) {
+    .storyboard {
+        align-items: center;
+    }
+
+    .panel {
+        width: 60vw;
+    }
+
+    .panel img {
+        width: 30vw;
+    }
+
+    .panel p {
+        font-size: .75em;
+    }
 }

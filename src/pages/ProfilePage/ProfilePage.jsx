@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import dateFormat from "dateformat";
+import { Link } from "react-router-dom";
+import * as PATHS from "../../utils/paths.js";
 import "./ProfilePage.css";
 
 export default class ProfilePage extends Component {
@@ -25,6 +27,9 @@ export default class ProfilePage extends Component {
               src="https://cdn3.vectorstock.com/i/1000x1000/97/32/man-silhouette-profile-picture-vector-2139732.jpg"
               alt="Profile pic"
             />
+            <Link to={PATHS.EDITPROFILE}>
+              <p>Edit</p>
+            </Link>
           </div>
           <div className="profile-info">
             <p>Email address: {email}</p>

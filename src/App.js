@@ -9,6 +9,7 @@ import Signup from "./pages/Signup.jsx";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
+import EditProfile from "./pages/ProfilePage/EditProfile.jsx";
 import WriteStoryPage from "./pages/WriteStoryPage/WriteStoryPage.jsx";
 import TopContentPage from "./pages/TopContentPage/TopContentPage.jsx";
 import InspirationPage from "./pages/InspirationPage/InspirationPage.jsx";
@@ -130,6 +131,12 @@ class App extends React.Component {
             exact
             path={PATHS.PROFILEPAGE}
             component={ProfilePage}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.EDITPROFILE}
+            component={EditProfile}
             user={this.state.user}
           />
           <ProtectedRoute

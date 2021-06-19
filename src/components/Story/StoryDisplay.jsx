@@ -5,15 +5,6 @@ export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
-    // const storyQuery = axios.create({
-    //   baseURL: `${process.env.REACT_APP_SERVER_URL}/story`,
-    // });
-    // storyQuery.get(`/${this.props.id}`).then((story) => {
-    //   this.setState(story).catch((err) => {
-    //     console.log(err);
-    //   });
-    // });
-
     getStory(this.props.id).then((story) => {
       this.setState(story);
     });
@@ -34,6 +25,6 @@ export default class StoryDisplay extends Component {
         </div>
       );
     } else return <div></div>;
-    // return <div></div>;
+
   }
 }

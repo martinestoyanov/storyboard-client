@@ -20,7 +20,7 @@ export default class StoryDisplay extends Component {
   };
 
   render() {
-    console.log(this.state.data);
+    // console.log(this.state.data);
     
     if (this.state.status) {
       const { text, title, user, genre, createdAt } = this.state.data;

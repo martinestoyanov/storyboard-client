@@ -17,3 +17,4 @@ export const THRILLERMYSTERY = "/thriller-mystery";
 export const RANDOM = "/random-story";
 export const PROFILEPAGE = `${PROTECTEDPAGE}/profile`;
 export const EDITPROFILE = `${PROTECTEDPAGE}/profile/edit`;
+export const SINGLESTORY = "/:id";

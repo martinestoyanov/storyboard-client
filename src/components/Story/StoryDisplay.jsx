@@ -21,9 +21,18 @@ export default class StoryDisplay extends Component {
 
   render() {
     console.log(this.state.data);
-
+    
     if (this.state.status) {
-      return <div>{this.state.data.text}</div>;
+      const { text, title, user, genre, createdAt } = this.state.data;
+      return (
+        <div>
+          <h3>{title}</h3>
+          <p>{user}</p>
+          <p>{genre}</p>
+          <p>{text}</p>
+          <p>{createdAt}</p>
+        </div>
+      );
     } else return <div></div>;
     // return <div></div>;
   }

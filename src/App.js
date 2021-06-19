@@ -11,6 +11,7 @@ import ProtectedRoute from "./routing-components/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import EditProfile from "./pages/ProfilePage/EditProfile.jsx";
 import WriteStoryPage from "./pages/WriteStoryPage/WriteStoryPage.jsx";
+import SingleStoryPage from "./pages/SingleStoryPage/SingleStoryPage";
 import TopContentPage from "./pages/TopContentPage/TopContentPage.jsx";
 import InspirationPage from "./pages/InspirationPage/InspirationPage.jsx";
 import RandomPage from "./pages/RandomPage/RandomPage.jsx";
@@ -120,6 +121,12 @@ class App extends React.Component {
             path={PATHS.RANDOM}
             authenticate={this.authenticate}
             component={RandomPage}
+          />
+          <NormalRoute
+            exact
+            path={PATHS.SINGLESTORY}
+            authenticate={this.authenticate}
+            component={SingleStoryPage}
           />
           <ProtectedRoute
             exact

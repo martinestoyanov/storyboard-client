@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactPlayer from "react-player/lazy";
+import ReactPlayer from "react-player";
 
 export default class VideoDisplay extends Component {
   state = { muted: true };

@@ -8,6 +8,7 @@ export default class InspirationPage extends Component {
   render() {
     return (
       <div>
+        <h2>Inspiration</h2>
         <NoVideoInspiration />
         <MostVideoInspiration />
         <MostCommentInspiration />

@@ -12,15 +12,20 @@
     align-items: baseline;
 }
 
-.username {
+.comment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--color-light);
+}
+
+.username,
+.date,
+.genre {
     color: var(--color-light);
 }
 
 .text {
     color: var(--color-main);
-    margin: -2vh 0;
-}
-
-.date {
-    color: var(--color-light);
+    margin: -1vh 0;
 }

@@ -4,6 +4,7 @@ import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import VideoDisplay from "../Video/VideoDisplay";
 import CommentDisplay from "../Comment/CommentDisplay";
+import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 
 export default class StoryDisplay extends Component {
@@ -27,9 +28,12 @@ export default class StoryDisplay extends Component {
           <div className="story-display">
             <h3 className="story-title">{title}</h3>
             <div className="story-details">
-              <b>
-                <p className="story-user">{user}</p>
-              </b>
+              <div className="user-details">
+                <img src={ProfilePic} alt="Profile pic" />
+                <b>
+                  <p className="story-user">{user}</p>
+                </b>
+              </div>
               <b>
                 <p className="story-genre">{genre}</p>
               </b>
@@ -40,13 +44,22 @@ export default class StoryDisplay extends Component {
             <ShowMoreText lines={5} className="story-text">
               <p className="story-text">{text}</p>
             </ShowMoreText>
-            <div className="button-div">
-              <button type="button" className="btn comment-btn">
-                Comment
-              </button>
-              <button type="button" className="btn movie-btn">
-                Add Movie
-              </button>
+            <div className="comment-info">
+            <p># of Likes</p>
+              <div className="button-div">
+                <button type="button" className="btn comment-btn">
+                  Comment
+                </button>
+                <button type="button" className="btn movie-btn">
+                  Add Movie
+                </button>
+                <button type="button" className="btn like-btn">
+                  Like
+                </button>
+                <button type="button" className="btn edit-btn">
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
           <div className="comment-display">

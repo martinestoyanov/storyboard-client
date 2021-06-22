@@ -17,6 +17,18 @@
     justify-content: space-evenly;
 }
 
+.user-details img {
+    width: 3vw;
+    height: auto;
+    border-radius: 100%;
+    margin: 1vh 1vw 0;
+}
+
+.user-details {
+    display: flex;
+    align-items: baseline;
+}
+
 .story-title,
 .story-user,
 .story-date,
@@ -60,7 +72,9 @@
 }
 
 .comment-btn,
-.movie-btn {
+.movie-btn,
+.like-btn,
+.edit-btn {
     font-size: .75em;
     padding: .5vh .5vw;
     margin: 0 .5vw 1vh;

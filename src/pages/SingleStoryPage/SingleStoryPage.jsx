@@ -8,7 +8,6 @@ export default class SingleStoryPage extends Component {
       const { id } = this.props.match.params;
     return (
       <div>
-        <h2>This page displays a single story.</h2>
         <StoryDisplay id={id} />
       </div>
     );

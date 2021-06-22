@@ -1,0 +1,15 @@
+@import url("../../App.css");
+
+.user-info img {
+    width: 3vw;
+    height: auto;
+    border-radius: 100%;
+    margin: 1vh 1vw 0;
+}
+
+.video-info {
+    color: var(--color-light);
+    /* display: flex;
+    justify-content: space-between;
+    flex-flow: row; */
+}

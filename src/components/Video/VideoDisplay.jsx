@@ -20,6 +20,8 @@ export default class VideoDisplay extends Component {
         <ReactPlayer
           url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           controls
+          width="100%"
+          height="90vh"
         />
       </div>
     );

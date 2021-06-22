@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProfilePic from "../../images/profile-silhouette.png";
 import ShowMoreText from "react-show-more-text";
+// import * as CommentForm from "../Forms/Comments/Comments";
 import "./CommentDisplay.css";
 
 export default class CommentDisplay extends Component {
@@ -44,8 +45,12 @@ export default class CommentDisplay extends Component {
             <button type="button" className="btn edit-btn">
               Edit
             </button>
+            <button type="button" className="btn edit-btn">
+              Delete
+            </button>
           </div>
         </div>
+        {/* <CommentForm /> */}
       </div>
     );
   }

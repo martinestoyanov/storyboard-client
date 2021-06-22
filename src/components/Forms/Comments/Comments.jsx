@@ -23,7 +23,7 @@ export default class Comments extends Component {
     commentServices.createComment(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
-      this.props.push(`/story/${id}`);
+      this.props.push("/storytellers");
     });
   };
 

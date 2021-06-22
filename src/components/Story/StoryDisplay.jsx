@@ -59,6 +59,9 @@ export default class StoryDisplay extends Component {
                 <button type="button" className="btn edit-btn">
                   Edit
                 </button>
+                <button type="button" className="btn delete-btn">
+                  Delete
+                </button>
               </div>
             </div>
           </div>

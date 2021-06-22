@@ -31,7 +31,7 @@ export default class VideoDisplay extends Component {
           url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           controls
           width="100%"
-          height="90vh"
+          height="75vh"
         />
         <div className="comment-info">
           <p># of Likes</p>
@@ -41,6 +41,9 @@ export default class VideoDisplay extends Component {
             </button>
             <button type="button" className="btn edit-btn">
               Edit
+            </button>
+            <button type="button" className="btn edit-btn">
+              Delete
             </button>
           </div>
         </div>

@@ -1,5 +1,9 @@
 @import url("../App.css");
 
+h1 {
+    font-size: 2em;
+}
+
 .App {
     margin: 0 auto;
     max-width: 80vw;

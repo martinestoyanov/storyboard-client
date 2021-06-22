@@ -8,6 +8,13 @@ import ProtectedPage from "./pages/ProtectedPage";
 import Signup from "./pages/Signup.jsx";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
+import EditProfile from "./pages/ProfilePage/EditProfile.jsx";
+import WriteStoryPage from "./pages/WriteStoryPage/WriteStoryPage.jsx";
+import SingleStoryPage from "./pages/SingleStoryPage/SingleStoryPage";
+import TopContentPage from "./pages/TopContentPage/TopContentPage.jsx";
+import InspirationPage from "./pages/InspirationPage/InspirationPage.jsx";
+import RandomPage from "./pages/RandomPage/RandomPage.jsx";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
@@ -97,10 +104,52 @@ class App extends React.Component {
             authenticate={this.authenticate}
             component={LogIn}
           />
+          <NormalRoute
+            exact
+            path={PATHS.TOPCONTENT}
+            authenticate={this.authenticate}
+            component={TopContentPage}
+          />
+          <NormalRoute
+            exact
+            path={PATHS.INSPIRATION}
+            authenticate={this.authenticate}
+            component={InspirationPage}
+          />
+          <NormalRoute
+            exact
+            path={PATHS.RANDOM}
+            authenticate={this.authenticate}
+            component={RandomPage}
+          />
+          <NormalRoute
+            exact
+            path={PATHS.SINGLESTORY}
+            authenticate={this.authenticate}
+            component={SingleStoryPage}
+          />
           <ProtectedRoute
             exact
             path={PATHS.PROTECTEDPAGE}
             component={ProtectedPage}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.PROFILEPAGE}
+            component={ProfilePage}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.EDITPROFILE}
+            component={EditProfile}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.WRITESTORY}
+            component={WriteStoryPage}
             user={this.state.user}
           />
         </Switch>

@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import commentService from "../../../services/Comment";
+import * as commentService from "../../../services/Comment";
 import "./Comments.css";
 
 export default class Comments extends Component {
   state = {
-    text: "",
+    storyId:"",
+    commentText: "",
   };
+
+  componentDidMount() {
+    this.setState({ storyId: this.props._id });
+    console.log(this.state);
+  }
+  
 
   changeHandler = (event) => {
     const input = event.target.name;
@@ -23,7 +30,7 @@ export default class Comments extends Component {
     commentService.createComment(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
-      this.props.push("/storytellers");
+      // this.props.push("/storytellers");
     });
   };
 

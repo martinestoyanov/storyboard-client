@@ -1,0 +1,40 @@
+@import url("../../../App.css");
+
+.video-form {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--color-main);
+    box-shadow: .5vw 1vh rgba(20, 5, 5, 0.7);
+    border-radius: 15px;
+    padding: 1vh 1vw;
+    width: 65vw;
+    height: auto;
+    margin: 2vh 3vw 2vh auto;
+}
+
+.video-form-info {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.video-form input {
+    width: 42.5%;
+    margin-bottom: 1vh;
+    font-size: 1em;
+    line-height: 2em;
+    border-radius: 8px;
+}
+
+.video-form select {
+    padding: 0 .5vw;
+    margin: .5vh .5vw 0;
+    font-size: 1em;
+    height: 5vh;
+    background-color: var(--color-main);
+    color: var(--white);
+}
+
+.video-btn-div {
+    display: flex;
+    justify-content: flex-end;
+}

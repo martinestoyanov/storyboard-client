@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "./Story.css";
+import * as storyService from "../../../services/Story";
+// import * as PATHS from "../../../utils/paths";
 
 export default class Story extends Component {
   state = {
     title: "",
-    genre: "",
+    genre: "Action/Adventure",
     text: "",
+    user: this.props.user._id,
   };
 
   changeHandler = (event) => {
@@ -16,17 +19,18 @@ export default class Story extends Component {
     });
   };
 
-  selectionHandler = (event) => {};
+  selectionHandler = (event) => {
+  };
 
-  // submitHandler = (event) => {
-  //   event.preventDefault();
-  //   // "service" is not correct/"createStory" has not be created yet
-  //   service.createStory(this.state).then((responseFromDB) => {
-  //     console.log(responseFromDB);
-  //     //   "/storytellers" has not been created yet
-  //     this.props.push("/storytellers");
-  //   });
-  // };
+  submitHandler = (event) => {
+    event.preventDefault();
+
+
+    storyService.createStory(this.state).then((responseFromDB) => {
+      console.log(responseFromDB);
+      this.props.history.push(`/story/${responseFromDB.data.storyData._id}`);
+    });
+  };
 
   render() {
     return (
@@ -43,7 +47,7 @@ export default class Story extends Component {
           <select
             name="genre"
             value={this.state.value}
-            onChange={this.selectionHandler}
+            onChange={this.changeHandler}
           >
             <option value="Action/Adventure">Action/Adventure</option>
             <option value="Comedy">Comedy</option>

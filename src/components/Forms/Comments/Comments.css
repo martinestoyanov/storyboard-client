@@ -1,0 +1,37 @@
+@import url("../../../App.css");
+
+.comment-form {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--color-main);
+    box-shadow: .5vw 1vh rgba(20, 5, 5, 0.7);
+    border-radius: 15px;
+    padding: 1vh 1vw;
+    width: 65vw;
+    height: auto;
+    margin: 2vh 3vw 2vh auto;
+}
+
+.comment-frm form {
+    display: flex;
+    flex-flow: column;
+    padding-bottom: -2vh;
+}
+
+.comment-frm input {
+    margin: 0 auto;
+    width: 98%;
+    margin-bottom: 1vh;
+    font-size: 1em;
+    line-height: 2em;
+    border-radius: 8px;
+}
+
+.comment-frm button {
+    width: 4vw;
+}
+
+.comment-btn-div {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0;
+}

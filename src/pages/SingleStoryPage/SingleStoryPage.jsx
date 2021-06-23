@@ -4,12 +4,11 @@ import "./SingleStoryPage.css";
 
 export default class SingleStoryPage extends Component {
   render() {
-    //   console.log(this.props)
+      console.log(this.props.user)
       const { id } = this.props.match.params;
     return (
       <div>
-        <h2>This page displays a single story.</h2>
-        <StoryDisplay id={id} />
+        <StoryDisplay id={id}  {...this.props}/>
       </div>
     );
   }

@@ -15,7 +15,7 @@ export default class WriteStoryPage extends Component {
             </p>
           </div>
           <div className="story-form">
-            <StoryForm />
+            <StoryForm {...this.props}/>
           </div>
         </div>
       </div>

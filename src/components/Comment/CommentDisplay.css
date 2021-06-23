@@ -1,0 +1,31 @@
+@import url("../../App.css");
+
+.comments img {
+    width: 3vw;
+    height: auto;
+    border-radius: 100%;
+    margin: 1vh 1vw 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: baseline;
+}
+
+.comment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--color-light);
+}
+
+.username,
+.date,
+.genre {
+    color: var(--color-light);
+}
+
+.text {
+    color: var(--color-main);
+    margin: -1vh 0;
+}

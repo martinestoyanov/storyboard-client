@@ -40,11 +40,13 @@ export function createStory(info) {
 
 export function getStory(id) {
   return storyService
-    .get(`/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
-      },
-    })
+    .get(`/${id}`
+      // , {
+      // headers: {
+      //   Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      // },
+      // }
+    )
     .then(successStatus)
     .catch(internalServerError);
 }

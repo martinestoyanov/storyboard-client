@@ -19,7 +19,8 @@ export default class Story extends Component {
     });
   };
 
-  selectionHandler = (event) => {};
+  selectionHandler = (event) => {
+  };
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -46,7 +47,7 @@ export default class Story extends Component {
           <select
             name="genre"
             value={this.state.value}
-            onChange={this.selectionHandler}
+            onChange={this.changeHandler}
           >
             <option value="Action/Adventure">Action/Adventure</option>
             <option value="Comedy">Comedy</option>

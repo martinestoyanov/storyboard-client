@@ -39,8 +39,10 @@ export function createVideo(info) {
     .catch(internalServerError);
 }
 
-export function getVideo(id, ...relations) {
-  const qParams = `?${QUERY.POPULATE}=${relations.join(`&${QUERY.POPULATE}=`)}`;
+export function getVideo(id, ...andRelations) {
+  const qParams = `?${QUERY.POPULATE}=${andRelations.join(
+    `&${QUERY.POPULATE}=`
+  )}`;
   return videoService
     .get(`/${id}${qParams}`, {
       headers: {

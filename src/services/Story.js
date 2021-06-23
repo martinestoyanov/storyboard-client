@@ -39,8 +39,10 @@ export function createStory(info) {
     .catch(internalServerError);
 }
 
-export function getStory(id, ...relations) {
-  const qParams = `?${QUERY.POPULATE}=${relations.join(`&${QUERY.POPULATE}=`)}`;
+export function getStory(id, ...andRelations) {
+  const qParams = `?${QUERY.POPULATE}=${andRelations.join(
+    `&${QUERY.POPULATE}=`
+  )}`;
   return storyService
     .get(`/${id}${qParams}`, {
       headers: {

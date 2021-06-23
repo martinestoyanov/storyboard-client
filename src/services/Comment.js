@@ -40,8 +40,56 @@ export function createComment(info) {
     .catch((err) => internalServerError(err));
 }
 
-export function getComment(id, ...relations) {
-  const qParams = `?${QUERY.POPULATE}=${relations.join(`&${QUERY.POPULATE}=`)}`;
+export function getComments(params) {
+  let qParams = "";
+  if (Object.keys(params).length === 0) {
+    qParams = "?";
+    const {
+      [QUERY.RANGE.START]: start,
+      [QUERY.RANGE.END]: end,
+      [QUERY.POPULATE]: populate,
+      [QUERY.NAME.USER]: user,
+      [QUERY.NAME.VIDEO]: video,
+      [QUERY.NAME.STORY]: story,
+    } = params;
+    let priorParams = false;
+    if (start && end) {
+      qParams += `${QUERY.RANGE.START}=${start}&${QUERY.RANGE.END}=${end}`;
+      priorParams = true;
+    }
+    if (populate && Array.isArray(populate)) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.POPULATE}=${populate.join(`&${QUERY.POPULATE}=`)}`;
+      priorParams = true;
+    }
+    if (user && video) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.USER}=${user}&${QUERY.NAME.VIDEO}=${video}`;
+      priorParams = true;
+    } else if (user && story) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.USER}=${user}&${QUERY.NAME.STORY}=${story}`;
+      priorParams = true;
+    } else if (user) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.USER}=${user}`;
+      priorParams = true;
+    }
+  }
+  return commentService
+    .get(`/index${qParams}`, {
+      headers: {
+        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      },
+    })
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
+export function getComment(id, ...andRelations) {
+  const qParams = `?${QUERY.POPULATE}=${andRelations.join(
+    `&${QUERY.POPULATE}=`
+  )}`;
   return commentService
     .get(`/${id}${qParams}`, {
       headers: {

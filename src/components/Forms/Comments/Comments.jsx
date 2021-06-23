@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import commentService from "../../../services/Comment";
+import * as commentService from "../../../services/Comment";
 import "./Comments.css";
 
 export default class Comments extends Component {

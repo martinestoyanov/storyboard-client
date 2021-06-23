@@ -4,8 +4,17 @@ import ShowMoreText from "react-show-more-text";
 // import * as CommentForm from "../Forms/Comments/Comments";
 import "./CommentDisplay.css";
 
+
+
 export default class CommentDisplay extends Component {
+
+  state = {}
+
+  componentDidMount() {
+    this.setState(this.props);
+  }
   render() {
+    console.log(this.state)
     return (
       <div className="comments">
         <div className="comment-info">

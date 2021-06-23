@@ -66,7 +66,7 @@ export default class StoryDisplay extends Component {
             </div>
           </div>
           <div className="comment-display">
-            <CommentDisplay />
+            <CommentDisplay {...this.state.data.comments} />
           </div>
           <div className="video-display">
             <VideoDisplay className="video" />

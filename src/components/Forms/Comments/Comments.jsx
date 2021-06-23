@@ -4,12 +4,12 @@ import "./Comments.css";
 
 export default class Comments extends Component {
   state = {
-    storyId:"",
+    story:"",
     commentText: "",
   };
 
   componentDidMount() {
-    this.setState({ storyId: this.props._id });
+    this.setState({ story: this.props._id ,author: this.props.user});
     console.log(this.state);
   }
   

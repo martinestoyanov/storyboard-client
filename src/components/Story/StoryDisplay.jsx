@@ -3,6 +3,7 @@ import { getStory } from "../../services/Story";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import VideoDisplay from "../Video/VideoDisplay";
+import Video from "../Forms/Video/Video";
 import CommentDisplay from "../Comment/CommentDisplay";
 import Comments from "../Forms/Comments/Comments";
 import ProfilePic from "../../images/profile-silhouette.png";
@@ -46,7 +47,7 @@ export default class StoryDisplay extends Component {
               <p className="story-text">{text}</p>
             </ShowMoreText>
             <div className="comment-info">
-            <p># of Likes</p>
+              <p># of Likes</p>
               <div className="button-div">
                 <button type="button" className="btn comment-btn">
                   Comment
@@ -74,6 +75,9 @@ export default class StoryDisplay extends Component {
           </div>
           <div className="video-display">
             <VideoDisplay className="video" />
+          </div>
+          <div>
+            <Video />
           </div>
         </div>
       );

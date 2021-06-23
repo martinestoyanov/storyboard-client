@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Story.css";
 import * as storyService from "../../../services/Story";
-import * as PATHS from "../../../utils/paths";
+// import * as PATHS from "../../../utils/paths";
 
 export default class Story extends Component {
   state = {
@@ -28,7 +28,7 @@ export default class Story extends Component {
 
     storyService.createStory(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
-      this.props.history.push(PATHS.HOMEPAGE);
+      this.props.history.push(`/story/${responseFromDB.data.storyData._id}`);
     });
   };
 

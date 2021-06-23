@@ -127,6 +127,7 @@ class App extends React.Component {
             path={PATHS.SINGLESTORY}
             authenticate={this.authenticate}
             component={SingleStoryPage}
+            user={this.state.user}
           />
           <ProtectedRoute
             exact

@@ -23,7 +23,7 @@ export default class StoryDisplay extends Component {
 
     if (this.state.status) {
       console.log(this.state);
-      const { text, title, user, genre, createdAt } = this.state.data;
+      const { text, title, genre, createdAt, user: author } = this.state.data;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">
@@ -33,7 +33,7 @@ export default class StoryDisplay extends Component {
               <div className="user-details">
                 <img src={ProfilePic} alt="Profile pic" />
                 <b>
-                  <p className="story-user">{user}</p>
+                  <p className="story-user">{author}</p>
                 </b>
               </div>
               <b>
@@ -71,7 +71,7 @@ export default class StoryDisplay extends Component {
             <CommentDisplay {...this.state.data.comments} />
           </div>
           <div className="comment-form">
-            <Comments {...this.state.data}/>
+            <Comments {...this.state.data} />
           </div>
           <div className="video-display">
             <VideoDisplay className="video" />

@@ -4,12 +4,12 @@ import "./Comments.css";
 
 export default class Comments extends Component {
   state = {
-    story:"",
+    story_Id:"",
     commentText: "",
   };
 
   componentDidMount() {
-    this.setState({ story: this.props._id ,author: this.props.user});
+    this.setState({ story_Id: this.props._id ,author: this.props.user});
     console.log(this.state);
   }
   
@@ -40,7 +40,7 @@ export default class Comments extends Component {
         <form onSubmit={this.submitHandler}>
           <input
             type="text"
-            name="text"
+            name="commentText"
             placeholder="Insert comment here."
             value={this.state.text}
             onChange={this.changeHandler}

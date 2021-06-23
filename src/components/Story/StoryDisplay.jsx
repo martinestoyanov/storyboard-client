@@ -18,6 +18,24 @@ export default class StoryDisplay extends Component {
     });
   };
 
+  commentHandler = () => {
+    let toggle = document.getElementById("comment-form");
+    if (toggle.style.display === "none") {
+      toggle.style.display = "block";
+    } else {
+      toggle.style.display = "none";
+    }
+  }
+
+  videoHandler = () => {
+    let toggle = document.getElementById("video-form");
+    if (toggle.style.display === "none") {
+      toggle.style.display = "block";
+    } else {
+      toggle.style.display = "none";
+    }
+  }
+
   render() {
     // console.log(this.state.data);
 
@@ -49,10 +67,10 @@ export default class StoryDisplay extends Component {
             <div className="comment-info">
               <p># of Likes</p>
               <div className="button-div">
-                <button type="button" className="btn comment-btn">
+                <button type="button" className="btn comment-btn" onClick={this.commentHandler}>
                   Comment
                 </button>
-                <button type="button" className="btn movie-btn">
+                <button type="button" className="btn movie-btn" onClick={this.videoHandler}>
                   Add Movie
                 </button>
                 <button type="button" className="btn like-btn">
@@ -67,6 +85,12 @@ export default class StoryDisplay extends Component {
               </div>
             </div>
           </div>
+          <div className="comment-form" id="comment-form" style={{display:"none"}}>
+            <Comments {...this.state.data}/>
+          </div>
+          <div id="video-form" style={{display:"none"}}>
+            <Video />
+          </div>
           <div className="comment-display">
             <CommentDisplay {...this.state.data.comments} />
           </div>
@@ -75,9 +99,6 @@ export default class StoryDisplay extends Component {
           </div>
           <div className="video-display">
             <VideoDisplay className="video" />
-          </div>
-          <div>
-            <Video />
           </div>
         </div>
       );

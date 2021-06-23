@@ -4,6 +4,7 @@ import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import VideoDisplay from "../Video/VideoDisplay";
 import CommentDisplay from "../Comment/CommentDisplay";
+import Comments from "../Forms/Comments/Comments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 
@@ -67,6 +68,9 @@ export default class StoryDisplay extends Component {
           </div>
           <div className="comment-display">
             <CommentDisplay />
+          </div>
+          <div className="comment-form">
+            <Comments />
           </div>
           <div className="video-display">
             <VideoDisplay className="video" />

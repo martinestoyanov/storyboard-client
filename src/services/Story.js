@@ -39,10 +39,62 @@ export function createStory(info) {
     .catch(internalServerError);
 }
 
-export function getStory(id, ...andRelations) {
-  const qParams = `?${QUERY.POPULATE}=${andRelations.join(
-    `&${QUERY.POPULATE}=`
-  )}`;
+export function getStories(params) {
+  let qParams = "";
+  if (Object.keys(params)?.length === 0) {
+    qParams = "?";
+    const {
+      [QUERY.RANGE.START]: start,
+      [QUERY.RANGE.END]: end,
+      [QUERY.RANDOM]: random,
+      [QUERY.POPULATE]: populate,
+      [QUERY.NAME.USER]: user,
+      [QUERY.SEARCH]: search,
+      [QUERY.GENRE]: genre,
+    } = params;
+    let priorParams = false;
+    if (start && end) {
+      qParams += `${QUERY.RANGE.START}=${start}&${QUERY.RANGE.END}=${end}`;
+      priorParams = true;
+    } else if (random) {
+      qParams += `${QUERY.RANGE.START}=${start}&${QUERY.RANGE.END}=${end}`;
+      priorParams = true;
+    }
+    if (populate && Array.isArray(populate)) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.POPULATE}=${populate.join(`&${QUERY.POPULATE}=`)}`;
+      priorParams = true;
+    }
+    if (user) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.USER}=${user}`;
+      priorParams = true;
+    }
+    if (search) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.SEARCH}=${search}`;
+      priorParams = true;
+    }
+    if (genre) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.GENRE}=${genre}`;
+      priorParams = true;
+    }
+  }
+  return storyService
+    .get(`/index${qParams}`, {
+      headers: {
+        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      },
+    })
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
+export function getStory(id, { [QUERY.POPULATE]: relationships }) {
+  const qParams = relationships
+    ? `?${QUERY.POPULATE}=${relationships.join(`&${QUERY.POPULATE}=`)}`
+    : "";
   return storyService
     .get(`/${id}${qParams}`, {
       headers: {

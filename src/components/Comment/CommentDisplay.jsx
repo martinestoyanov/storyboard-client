@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ProfilePic from "../../images/profile-silhouette.png";
 import ShowMoreText from "react-show-more-text";
-// import * as CommentForm from "../Forms/Comments/Comments";
 import "./CommentDisplay.css";
 
 
@@ -59,7 +58,6 @@ export default class CommentDisplay extends Component {
             </button>
           </div>
         </div>
-        {/* <CommentForm /> */}
       </div>
     );
   }

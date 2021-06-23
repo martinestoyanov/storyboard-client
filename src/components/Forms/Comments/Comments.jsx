@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import commentServices from "../../../services/Comment";
+import commentService from "../../../services/Comment";
 import "./Comments.css";
 
 export default class Comments extends Component {
@@ -20,7 +20,7 @@ export default class Comments extends Component {
     //-----------------------------BOTH CREATED! -----------------------
     // "service" is not correct/"createComment" has not be created yet
     //------------------------------------------------------------------
-    commentServices.createComment(this.state).then((responseFromDB) => {
+    commentService.createComment(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
       this.props.push("/storytellers");
@@ -29,7 +29,7 @@ export default class Comments extends Component {
 
   render() {
     return (
-      <div>
+      <div className="comment-frm">
         <form onSubmit={this.submitHandler}>
           <input
             type="text"
@@ -38,7 +38,11 @@ export default class Comments extends Component {
             value={this.state.text}
             onChange={this.changeHandler}
           />
-          <button type="submit">Submit</button>
+          <div className="comment-btn-div">
+            <button type="submit" className="btn comment-form-btn">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     );

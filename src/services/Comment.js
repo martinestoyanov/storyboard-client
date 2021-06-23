@@ -25,7 +25,7 @@ function successStatus(res) {
   };
 }
 
-export function createComment(info) {
+export default function createComment(info) {
   return commentService
     .post("/create", info, {
       headers: {

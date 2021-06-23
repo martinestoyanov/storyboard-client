@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as CONSTS from "../utils/consts";
+import { QUERY } from "../utils/queryConsts";
 
 // here we are just maing our code look more DRY. With every backend call we must deal with errors and success states. The idea of creating these kinds of services is to make our lives easier in the components
 function internalServerError(err) {
@@ -38,9 +39,10 @@ export function createVideo(info) {
     .catch(internalServerError);
 }
 
-export function getVideo(id) {
+export function getVideo(id, ...relations) {
+  const qParams = `?${QUERY.POPULATE}=${relations.join(`&${QUERY.POPULATE}=`)}`;
   return videoService
-    .get(`/${id}`, {
+    .get(`/${id}${qParams}`, {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },

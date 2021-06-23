@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as CONSTS from "../utils/consts";
+import { QUERY } from "../utils/queryConsts";
 
 const commentService = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/comment`,
@@ -39,9 +40,10 @@ export function createComment(info) {
     .catch((err) => internalServerError(err));
 }
 
-export function getComment(id) {
+export function getComment(id, ...relations) {
+  const qParams = `?${QUERY.POPULATE}=${relations.join(`&${QUERY.POPULATE}=`)}`;
   return commentService
-    .get(`/${id}`, {
+    .get(`/${id}${qParams}`, {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },

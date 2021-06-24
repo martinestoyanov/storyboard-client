@@ -10,7 +10,7 @@ export default class Comments extends Component {
 
   componentDidMount() {
     this.setState({ story_Id: this.props._id ,author: this.props.user});
-    console.log(this.state);
+    // console.log(this.state);
   }
   
 

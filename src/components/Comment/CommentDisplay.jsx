@@ -13,7 +13,7 @@ export default class CommentDisplay extends Component {
     this.setState(this.props);
   }
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div className="comments">
         <div className="comment-info">

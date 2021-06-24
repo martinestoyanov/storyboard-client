@@ -23,7 +23,7 @@ export default class EditProfile extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { username, pictureURL: pic, email } = this.props.user;
     return (
       <div>

@@ -6,6 +6,7 @@ import VideoDisplay from "../Video/VideoDisplay";
 import Video from "../Forms/Video/Video";
 import CommentDisplay from "../Comment/CommentDisplay";
 import Comments from "../Forms/Comments/Comments";
+import EditComments from "../Forms/Comments/EditComments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 
@@ -13,7 +14,7 @@ export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
-    getStory(this.props.id).then((story) => {
+    getStory(this.props.id, {}).then((story) => {
       this.setState(story);
     });
   };
@@ -25,7 +26,7 @@ export default class StoryDisplay extends Component {
     } else {
       toggle.style.display = "none";
     }
-  }
+  };
 
   videoHandler = () => {
     let toggle = document.getElementById("video-form");
@@ -34,14 +35,26 @@ export default class StoryDisplay extends Component {
     } else {
       toggle.style.display = "none";
     }
-  }
+  };
+
+  upvoteHandler = () => {
+    this.setState({ upvotes: (this.state.data.upvotes += 1) });
+    // Need to push to db
+  };
 
   render() {
     // console.log(this.state.data);
 
     if (this.state.status) {
-      console.log(this.state);
-      const { text, title, genre, createdAt, user: author } = this.state.data;
+      console.log(this.props.user);
+      const {
+        text,
+        title,
+        genre,
+        createdAt,
+        user: author,
+        upvotes,
+      } = this.state.data;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">
@@ -65,37 +78,65 @@ export default class StoryDisplay extends Component {
               <p className="story-text">{text}</p>
             </ShowMoreText>
             <div className="comment-info">
-              <p># of Likes</p>
+              <p>{upvotes} Likes</p>
               <div className="button-div">
-                <button type="button" className="btn comment-btn" onClick={this.commentHandler}>
-                  Comment
-                </button>
-                <button type="button" className="btn movie-btn" onClick={this.videoHandler}>
-                  Add Movie
-                </button>
-                <button type="button" className="btn like-btn">
-                  Like
-                </button>
-                <button type="button" className="btn edit-btn">
-                  Edit
-                </button>
-                <button type="button" className="btn delete-btn">
-                  Delete
-                </button>
+                {this.props.user ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn comment-btn"
+                      onClick={this.commentHandler}
+                    >
+                      Comment
+                    </button>
+                    <button
+                      type="button"
+                      className="btn movie-btn"
+                      onClick={this.videoHandler}
+                    >
+                      Add Movie
+                    </button>
+                    <button
+                      type="button"
+                      className="btn like-btn"
+                      onClick={this.upvoteHandler}
+                    >
+                      Like
+                    </button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
+                {this.props.user && (this.props.user._id === author) ? (
+                  <>
+                    <button type="button" className="btn edit-btn">
+                      Edit
+                    </button>
+                    <button type="button" className="btn delete-btn">
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </div>
-          <div className="comment-form" id="comment-form" style={{display:"none"}}>
-            <Comments {...this.state.data}/>
+          <div
+            className="comment-form"
+            id="comment-form"
+            style={{ display: "none" }}
+          >
+            <Comments {...this.state.data} />
           </div>
-          <div id="video-form" style={{display:"none"}}>
+          <div className="edit-comment-form">
+            <EditComments />
+          </div>
+          <div id="video-form" style={{ display: "none" }}>
             <Video />
           </div>
           <div className="comment-display">
             <CommentDisplay {...this.state.data.comments} />
-          </div>
-          <div className="comment-form">
-            <Comments {...this.state.data} />
           </div>
           <div className="video-display">
             <VideoDisplay className="video" />

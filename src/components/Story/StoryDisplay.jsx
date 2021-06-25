@@ -8,12 +8,15 @@ import CommentDisplay from "../Comment/CommentDisplay";
 import Comments from "../Forms/Comments/Comments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
+import { QUERY, STORY } from "../../utils/queryConsts";
 
 export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
-    getStory(this.props.id).then((story) => {
+    getStory(this.props.id, {
+      [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
+    }).then((story) => {
       this.setState(story);
     });
   };
@@ -25,7 +28,7 @@ export default class StoryDisplay extends Component {
     } else {
       toggle.style.display = "none";
     }
-  }
+  };
 
   videoHandler = () => {
     let toggle = document.getElementById("video-form");
@@ -34,14 +37,15 @@ export default class StoryDisplay extends Component {
     } else {
       toggle.style.display = "none";
     }
-  }
+  };
 
   render() {
     // console.log(this.state.data);
 
     if (this.state.status) {
       console.log(this.state);
-      const { text, title, genre, createdAt, user: author } = this.state.data;
+      const { text, title, genre, createdAt } = this.state.data;
+      const author = this.state.data.user.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">
@@ -67,10 +71,18 @@ export default class StoryDisplay extends Component {
             <div className="comment-info">
               <p># of Likes</p>
               <div className="button-div">
-                <button type="button" className="btn comment-btn" onClick={this.commentHandler}>
+                <button
+                  type="button"
+                  className="btn comment-btn"
+                  onClick={this.commentHandler}
+                >
                   Comment
                 </button>
-                <button type="button" className="btn movie-btn" onClick={this.videoHandler}>
+                <button
+                  type="button"
+                  className="btn movie-btn"
+                  onClick={this.videoHandler}
+                >
                   Add Movie
                 </button>
                 <button type="button" className="btn like-btn">
@@ -85,10 +97,14 @@ export default class StoryDisplay extends Component {
               </div>
             </div>
           </div>
-          <div className="comment-form" id="comment-form" style={{display:"none"}}>
-            <Comments {...this.state.data}/>
+          <div
+            className="comment-form"
+            id="comment-form"
+            style={{ display: "none" }}
+          >
+            <Comments {...this.state.data} />
           </div>
-          <div id="video-form" style={{display:"none"}}>
+          <div id="video-form" style={{ display: "none" }}>
             <Video />
           </div>
           <div className="comment-display">

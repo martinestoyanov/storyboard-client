@@ -41,7 +41,7 @@ export function createStory(info) {
 
 export function getStories(params) {
   let qParams = "";
-  if (Object.keys(params)?.length === 0) {
+  if (Object.keys(params)?.length > 0) {
     qParams = "?";
     const {
       [QUERY.RANGE.START]: start,
@@ -91,10 +91,12 @@ export function getStories(params) {
     .catch(internalServerError);
 }
 
-export function getStory(id, { [QUERY.POPULATE]: relationships }) {
-  const qParams = relationships
-    ? `?${QUERY.POPULATE}=${relationships.join(`&${QUERY.POPULATE}=`)}`
-    : "";
+export function getStory(id, params) {
+  let qParams = "";
+  if (params) {
+    const { [QUERY.POPULATE]: relationships } = params;
+    qParams = `?${QUERY.POPULATE}=${relationships.join(`&${QUERY.POPULATE}=`)}`;
+  }
   return storyService
     .get(`/${id}${qParams}`, {
       headers: {

@@ -42,7 +42,7 @@ export function createComment(info) {
 
 export function getComments(params) {
   let qParams = "";
-  if (Object.keys(params)?.length === 0) {
+  if (Object.keys(params)?.length > 0) {
     qParams = "?";
     const {
       [QUERY.RANGE.START]: start,
@@ -86,10 +86,12 @@ export function getComments(params) {
     .catch(internalServerError);
 }
 
-export function getComment(id, { [QUERY.POPULATE]: relationships }) {
-  const qParams = relationships
-    ? `?${QUERY.POPULATE}=${relationships.join(`&${QUERY.POPULATE}=`)}`
-    : "";
+export function getComment(id, params) {
+  let qParams = "";
+  if (params) {
+    const { [QUERY.POPULATE]: relationships } = params;
+    qParams = `?${QUERY.POPULATE}=${relationships.join(`&${QUERY.POPULATE}=`)}`;
+  }
   return commentService
     .get(`/${id}${qParams}`, {
       headers: {

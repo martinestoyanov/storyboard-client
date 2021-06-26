@@ -9,38 +9,65 @@ export default class GenrePage extends Component {
 
   componentDidMount = () => {
     const { genrename } = this.props.match.params;
-    console.log(this.state);
-    if (this.props.match.params === "action-adventure")
-      this.setState({ genre: [GENRE.ACTIONADVENTURE] });
-    if (this.props.match.params === "comedy")
-      this.setState({ genre: [GENRE.COMEDY] });
-    if (this.props.match.params === "drama")
-      this.setState({ genre: [GENRE.DRAMA] });
-    if (this.props.match.params === "fantasy")
-      this.setState({ genre: [GENRE.FANTASY] });
-    if (this.props.match.params === "horror")
-      this.setState({ genre: [GENRE.HORROR] });
-    if (this.props.match.params === "romance")
-      this.setState({ genre: [GENRE.ROMANCE] });
-    if (this.props.match.params === "romcom")
-      this.setState({ genre: [GENRE.ROMCOM] });
-    if (this.props.match.params === "scifi")
-      this.setState({ genre: [GENRE.SCIFI] });
+    console.log("genrename", genrename);
+    let genre;
+    switch (genrename) {
+      case "action-adventure":
+        genre = GENRE.ACTION_ADVENTURE;
+        break;
+      case "comedy":
+        genre = GENRE.COMEDY;
+        break;
+      case "drama":
+        genre = GENRE.DRAMA;
+        break;
+      case "fantasy":
+        genre = GENRE.FANTASY;
+        break;
+      case "horror":
+        genre = GENRE.HORROR;
+        break;
+      case "romance":
+        genre = GENRE.ROMANCE;
+        break;
+      case "romcom":
+        genre = GENRE.ROMCOM;
+        break;
+      case "scifi":
+        genre = GENRE.SCIFI;
+        break;
+      case "thriller-mystery":
+        genre = GENRE.THRILLER_MYSTERY;
+        break;
+      default:
+    }
 
+    // console.log("checking", this.state);
+    // this.setState({ genre });
     getStories({
-      [QUERY.GENRE]: this.state.genre,
+      [QUERY.GENRE]: genre,
       [QUERY.POPULATE]: [STORY.AUTHOR],
     }).then((result) => {
-      this.setState({ stories: result.data, genre: genrename });
+      this.setState({
+        stories: result.data,
+        genre,
+      });
     });
   };
 
   render() {
+    
     if (!this.state.stories || this.state.stories.total === 0) {
-      return <div>No stories in this Genre!</div>;
+      return (
+        <div>
+          <h1>{this.state.genre}</h1>
+          <h2>No stories in this Genre!</h2>
+        </div>
+      );
     } else {
       return (
         <div>
+          <h1>{this.state.genre}</h1>
           {this.state.stories.stories.map((eachStory, index) => (
             <div>
               <Link to={`/story/${eachStory._id}`}>

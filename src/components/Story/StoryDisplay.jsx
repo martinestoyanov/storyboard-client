@@ -110,11 +110,11 @@ export default class StoryDisplay extends Component {
           <div className="comment-display">
             <CommentDisplay {...this.state.data.comments} />
           </div>
-          <div className="comment-form">
+          {/* <div className="comment-form">
             <Comments {...this.state.data} />
-          </div>
+          </div> */}
           <div className="video-display">
-            <VideoDisplay className="video" />
+            <VideoDisplay {...this.state.data} className="video" />
           </div>
         </div>
       );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./GenrePage.css";
 import { getStories } from "../../services/Story";
 import { QUERY, STORY, GENRE } from "../../utils/queryConsts";
+import { Link } from "react-router-dom";
 
 export default class GenrePage extends Component {
   state = {};
@@ -41,10 +42,14 @@ export default class GenrePage extends Component {
       return (
         <div>
           {this.state.stories.stories.map((eachStory, index) => (
-            <>
-              <h1>{eachStory.title}</h1>
-              <h3>{eachStory.user.username}</h3>
-            </>
+            <div>
+              <Link to={`/story/${eachStory._id}`}>
+                <div>
+                  <h1>{eachStory.title}</h1>
+                  <h3>{eachStory.user.username}</h3>
+                </div>
+              </Link>
+            </div>
           ))}
         </div>
       );

@@ -49,8 +49,8 @@ export default class StoryDisplay extends Component {
     // console.log(this.state.data);
 
     if (this.state.status) {
-      console.log(this.state.data);
-      const { text, title, genre, createdAt, upvotes } = this.state.data;
+      // console.log(this.state.data);
+      const { text, title, genre, createdAt } = this.state.data;
       const author = this.state.data.user.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
@@ -72,10 +72,10 @@ export default class StoryDisplay extends Component {
               </b>
             </div>
             <ShowMoreText lines={5} className="story-text">
-              <p className="story-text">{text}</p>
+              <p>{text}</p>
             </ShowMoreText>
-            <div className="comment-info">
-              <p>{upvotes} Likes</p>
+            <div className="comment-info story-info">
+              <p># of Likes</p>
               <div className="button-div">
                 <button
                   type="button"

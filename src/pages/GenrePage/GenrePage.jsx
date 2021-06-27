@@ -68,7 +68,7 @@ export default class GenrePage extends Component {
         </div>
       );
     } else {
-      console.log(this.state.stories.stories);
+      // console.log(this.state.stories.stories);
       return (
         <div>
           <h1>{this.state.genre}</h1>

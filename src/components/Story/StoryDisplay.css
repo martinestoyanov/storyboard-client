@@ -36,6 +36,12 @@
     color: var(--color-light);
 }
 
+.story-user,
+.story-date,
+.story-genre {
+    font-size: 1.25em;
+}
+
 .story-title {
     margin-bottom: auto;
 }
@@ -43,10 +49,7 @@
 .story-text {
     color: var(--color-main);
     margin-bottom: 2vh;
-}
-
-.story-text p {
-    font-size: 1.25em;
+    font-size: 1.2em;
 }
 
 .video-display {
@@ -64,6 +67,11 @@
 
 .video {
     height: 100%;
+}
+
+.story-info {
+    padding: 0 2vw;
+    margin-top: -2vh;
 }
 
 .button-div {

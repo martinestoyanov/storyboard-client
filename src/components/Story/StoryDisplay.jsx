@@ -6,7 +6,7 @@ import VideoDisplay from "../Video/VideoDisplay";
 import Video from "../Forms/Video/Video";
 import CommentDisplay from "../Comment/CommentDisplay";
 import Comments from "../Forms/Comments/Comments";
-import EditComments from "../Forms/Comments/EditComments";
+// import EditComments from "../Forms/Comments/EditComments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 import { QUERY, STORY } from "../../utils/queryConsts";
@@ -15,13 +15,9 @@ export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
-<<<<<<< HEAD
-    getStory(this.props.id, {}).then((story) => {
-=======
     getStory(this.props.id, {
       [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
     }).then((story) => {
->>>>>>> 08d4cf58bcd4de8da4339380a708fa0e34dd902a
       this.setState(story);
     });
   };
@@ -43,34 +39,19 @@ export default class StoryDisplay extends Component {
       toggle.style.display = "none";
     }
   };
-<<<<<<< HEAD
 
   upvoteHandler = () => {
-    this.setState({ upvotes: (this.state.data.upvotes += 1) });
+    // this.setState({ upvotes: (this.state.data.upvotes += 1) });
     // Need to push to db
   };
-=======
->>>>>>> 08d4cf58bcd4de8da4339380a708fa0e34dd902a
 
   render() {
     // console.log(this.state.data);
 
     if (this.state.status) {
-<<<<<<< HEAD
-      console.log(this.props.user);
-      const {
-        text,
-        title,
-        genre,
-        createdAt,
-        user: author,
-        upvotes,
-      } = this.state.data;
-=======
-      console.log(this.state);
-      const { text, title, genre, createdAt } = this.state.data;
+      console.log(this.state.data);
+      const { text, title, genre, createdAt, upvotes } = this.state.data;
       const author = this.state.data.user.username;
->>>>>>> 08d4cf58bcd4de8da4339380a708fa0e34dd902a
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">

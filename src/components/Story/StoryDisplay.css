@@ -88,6 +88,10 @@
     color: var(--white);
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 720px) {
     .display-div {
         display: flex;

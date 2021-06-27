@@ -77,29 +77,42 @@ export default class StoryDisplay extends Component {
             <div className="comment-info story-info">
               <p># of Likes</p>
               <div className="button-div">
-                <button
-                  type="button"
-                  className="btn comment-btn"
-                  onClick={this.commentHandler}
-                >
-                  Comment
-                </button>
-                <button
-                  type="button"
-                  className="btn movie-btn"
-                  onClick={this.videoHandler}
-                >
-                  Add Movie
-                </button>
-                <button type="button" className="btn like-btn">
-                  Like
-                </button>
-                <button type="button" className="btn edit-btn">
-                  Edit
-                </button>
-                <button type="button" className="btn delete-btn">
-                  Delete
-                </button>
+                {this.props.user ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn comment-btn"
+                      onClick={this.commentHandler}
+                    >
+                      Comment
+                    </button>
+                    <button
+                      type="button"
+                      className="btn movie-btn"
+                      onClick={this.videoHandler}
+                    >
+                      Add Movie
+                    </button>
+                    <button type="button" className="btn like-btn">
+                      Like
+                    </button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
+                {this.props.user &&
+                this.props.user._id === this.state.data.user._id ? (
+                  <>
+                    <button type="button" className="btn edit-btn">
+                      Edit
+                    </button>
+                    <button type="button" className="btn delete-btn">
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </div>

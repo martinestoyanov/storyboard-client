@@ -1,20 +1,24 @@
 export const HOMEPAGE = "/";
+
 export const SIGNUPPAGE = "/auth/signup";
 export const LOGINPAGE = "/auth/login";
 export const PROTECTEDPAGE = "/protected";
+
 export const TOPCONTENT = "/top-content";
 export const WRITESTORY = `${PROTECTEDPAGE}/write-story`;
 export const INSPIRATION = "/inspiration";
-export const ACTIONADVENTURE = "/story/action-adventure";
-export const COMEDY = "/story/comedy";
-export const DRAMA = "/story/drama";
-export const FANTASY = "/story/fantasy";
-export const HORROR = "/story/horror";
-export const ROMANCE = "/story/romance";
-export const ROMCOM = "/story/rom-com";
-export const SCIFI = "/story/sci-fi";
-export const THRILLERMYSTERY = "/story/thriller-mystery";
 export const RANDOM = "/story/index?random=true";
 export const PROFILEPAGE = `${PROTECTEDPAGE}/profile`;
 export const EDITPROFILE = `${PROTECTEDPAGE}/profile/edit`;
 export const SINGLESTORY = "/story/:id";
+
+export const GENRE = `/genre/:genrename`;
+export const ACTIONADVENTURE = "/genre/action-adventure";
+export const COMEDY = "/genre/comedy";
+export const DRAMA = "/genre/drama";
+export const FANTASY = "/genre/fantasy";
+export const HORROR = "/genre/horror";
+export const ROMANCE = "/genre/romance";
+export const ROMCOM = "/genre/romcom";
+export const SCIFI = "/genre/scifi";
+export const THRILLERMYSTERY = "/genre/thriller-mystery";

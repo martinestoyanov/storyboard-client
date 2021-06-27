@@ -15,6 +15,7 @@ import SingleStoryPage from "./pages/SingleStoryPage/SingleStoryPage";
 import TopContentPage from "./pages/TopContentPage/TopContentPage.jsx";
 import InspirationPage from "./pages/InspirationPage/InspirationPage.jsx";
 import RandomPage from "./pages/RandomPage/RandomPage.jsx";
+import GenrePage from "./pages/GenrePage/GenrePage";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
@@ -127,6 +128,13 @@ class App extends React.Component {
             path={PATHS.SINGLESTORY}
             authenticate={this.authenticate}
             component={SingleStoryPage}
+            user={this.state.user}
+          />
+          <NormalRoute
+            exact
+            path={PATHS.GENRE}
+            authenticate={this.authenticate}
+            component={GenrePage}
             user={this.state.user}
           />
           <ProtectedRoute

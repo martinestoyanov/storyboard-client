@@ -9,12 +9,19 @@ import Comments from "../Forms/Comments/Comments";
 import EditComments from "../Forms/Comments/EditComments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
+import { QUERY, STORY } from "../../utils/queryConsts";
 
 export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
+<<<<<<< HEAD
     getStory(this.props.id, {}).then((story) => {
+=======
+    getStory(this.props.id, {
+      [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
+    }).then((story) => {
+>>>>>>> 08d4cf58bcd4de8da4339380a708fa0e34dd902a
       this.setState(story);
     });
   };
@@ -36,16 +43,20 @@ export default class StoryDisplay extends Component {
       toggle.style.display = "none";
     }
   };
+<<<<<<< HEAD
 
   upvoteHandler = () => {
     this.setState({ upvotes: (this.state.data.upvotes += 1) });
     // Need to push to db
   };
+=======
+>>>>>>> 08d4cf58bcd4de8da4339380a708fa0e34dd902a
 
   render() {
     // console.log(this.state.data);
 
     if (this.state.status) {
+<<<<<<< HEAD
       console.log(this.props.user);
       const {
         text,
@@ -55,6 +66,11 @@ export default class StoryDisplay extends Component {
         user: author,
         upvotes,
       } = this.state.data;
+=======
+      console.log(this.state);
+      const { text, title, genre, createdAt } = this.state.data;
+      const author = this.state.data.user.username;
+>>>>>>> 08d4cf58bcd4de8da4339380a708fa0e34dd902a
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">
@@ -80,45 +96,29 @@ export default class StoryDisplay extends Component {
             <div className="comment-info">
               <p>{upvotes} Likes</p>
               <div className="button-div">
-                {this.props.user ? (
-                  <>
-                    <button
-                      type="button"
-                      className="btn comment-btn"
-                      onClick={this.commentHandler}
-                    >
-                      Comment
-                    </button>
-                    <button
-                      type="button"
-                      className="btn movie-btn"
-                      onClick={this.videoHandler}
-                    >
-                      Add Movie
-                    </button>
-                    <button
-                      type="button"
-                      className="btn like-btn"
-                      onClick={this.upvoteHandler}
-                    >
-                      Like
-                    </button>
-                  </>
-                ) : (
-                  <div></div>
-                )}
-                {this.props.user && (this.props.user._id === author) ? (
-                  <>
-                    <button type="button" className="btn edit-btn">
-                      Edit
-                    </button>
-                    <button type="button" className="btn delete-btn">
-                      Delete
-                    </button>
-                  </>
-                ) : (
-                  <div></div>
-                )}
+                <button
+                  type="button"
+                  className="btn comment-btn"
+                  onClick={this.commentHandler}
+                >
+                  Comment
+                </button>
+                <button
+                  type="button"
+                  className="btn movie-btn"
+                  onClick={this.videoHandler}
+                >
+                  Add Movie
+                </button>
+                <button type="button" className="btn like-btn">
+                  Like
+                </button>
+                <button type="button" className="btn edit-btn">
+                  Edit
+                </button>
+                <button type="button" className="btn delete-btn">
+                  Delete
+                </button>
               </div>
             </div>
           </div>
@@ -129,17 +129,17 @@ export default class StoryDisplay extends Component {
           >
             <Comments {...this.state.data} />
           </div>
-          <div className="edit-comment-form">
-            <EditComments />
-          </div>
           <div id="video-form" style={{ display: "none" }}>
             <Video />
           </div>
           <div className="comment-display">
             <CommentDisplay {...this.state.data.comments} />
           </div>
+          {/* <div className="comment-form">
+            <Comments {...this.state.data} />
+          </div> */}
           <div className="video-display">
-            <VideoDisplay className="video" />
+            <VideoDisplay {...this.state.data} className="video" />
           </div>
         </div>
       );

@@ -127,11 +127,9 @@ export default class StoryDisplay extends Component {
             <Video />
           </div>
           <div className="comment-display">
-            <CommentDisplay {...this.state.data.comments} />
+          {/* Made change.  Please tell me if this is ok? */}
+            <CommentDisplay comments={this.state.data.comments} {...this.props} />
           </div>
-          {/* <div className="comment-form">
-            <Comments {...this.state.data} />
-          </div> */}
           <div className="video-display">
             <VideoDisplay {...this.state.data} className="video" />
           </div>

@@ -3,17 +3,15 @@ import ProfilePic from "../../images/profile-silhouette.png";
 import ShowMoreText from "react-show-more-text";
 import "./CommentDisplay.css";
 
-
-
 export default class CommentDisplay extends Component {
+  state = {};
 
-  state = {}
+  // componentDidMount() {
+  //   this.setState(this.props);
+  // }
 
-  componentDidMount() {
-    this.setState(this.props);
-  }
   render() {
-    // console.log(this.state)
+    console.log(this.props);
     return (
       <div className="comments">
         <div className="comment-info">
@@ -47,9 +45,15 @@ export default class CommentDisplay extends Component {
         <div className="comment-info">
           <p># of Likes</p>
           <div className="button-div">
-            <button type="button" className="btn like-btn">
-              Like
-            </button>
+            {this.props.user ? (
+              <>
+                <button type="button" className="btn like-btn">
+                  Like
+                </button>
+              </>
+            ) : (
+              <div></div>
+            )}
             <button type="button" className="btn edit-btn">
               Edit
             </button>

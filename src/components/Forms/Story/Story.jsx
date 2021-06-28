@@ -19,16 +19,14 @@ export default class Story extends Component {
     });
   };
 
-  selectionHandler = (event) => {
-  };
+  selectionHandler = (event) => {};
 
   submitHandler = (event) => {
     event.preventDefault();
 
-
     storyService.createStory(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
-      this.props.history.push(`/story/${responseFromDB.data.storyData._id}`);
+      this.props.history.push(`/story/${responseFromDB.data.newStory._id}`);
     });
   };
 

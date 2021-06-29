@@ -34,7 +34,7 @@ export function createComment(info) {
       },
     })
     .then((res) => {
-      console.log(res);
+      console.log("comments service response",res);
       successStatus();
     })
     .catch((err) => internalServerError(err));

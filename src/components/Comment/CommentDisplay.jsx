@@ -11,7 +11,7 @@ export default class CommentDisplay extends Component {
   // }
 
   render() {
-    console.log(this.props);
+    console.log("comments",this.props);
     return (
       <div className="comments">
         <div className="comment-info">

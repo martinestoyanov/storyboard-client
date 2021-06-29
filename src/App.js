@@ -154,6 +154,7 @@ class App extends React.Component {
             path={PATHS.EDITPROFILE}
             component={EditProfile}
             user={this.state.user}
+            handleLogout={this.handleLogout}
           />
           <ProtectedRoute
             exact

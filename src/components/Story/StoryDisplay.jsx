@@ -15,11 +15,15 @@ export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
-    getStory(this.props.id, {
-      [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
-    }).then((story) => {
-      this.setState(story);
-    });
+    if (!this.props.queried) {
+      getStory(this.props.id, {
+        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS, STORY.VIDEOS],
+      }).then((story) => {
+        this.setState(story);
+      });
+    } else if (this.props.fromRandom) {
+      this.setState({ data: this.props.data.randomStory, status: true });
+    }
   };
 
   commentHandler = () => {
@@ -126,13 +130,18 @@ export default class StoryDisplay extends Component {
           <div id="video-form" style={{ display: "none" }}>
             <Video />
           </div>
-          <div className="comment-display">
-          {/* Made change.  Please tell me if this is ok? */}
-            <CommentDisplay comments={this.state.data.comments} {...this.props} />
-          </div>
-          <div className="video-display">
-            <VideoDisplay {...this.state.data} className="video" />
-          </div>
+
+          {this.state.data.comments.map((eachComment, index) => (
+            <div className="comment-display">
+              <CommentDisplay eachComment={eachComment} {...this.props} />
+            </div>
+          ))}
+
+          {this.state.data.video_contributions.map((eachVideo, index) => (
+            <div className="video-display">
+              <VideoDisplay eachVideo={eachVideo} {...this.props} className="video" />
+            </div>
+          ))}
         </div>
       );
     } else return <div></div>;

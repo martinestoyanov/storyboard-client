@@ -6,6 +6,7 @@ import VideoDisplay from "../Video/VideoDisplay";
 import Video from "../Forms/Video/Video";
 import CommentDisplay from "../Comment/CommentDisplay";
 import Comments from "../Forms/Comments/Comments";
+// import EditComments from "../Forms/Comments/EditComments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 import { QUERY, STORY } from "../../utils/queryConsts";
@@ -39,11 +40,16 @@ export default class StoryDisplay extends Component {
     }
   };
 
+  upvoteHandler = () => {
+    // this.setState({ upvotes: (this.state.data.upvotes += 1) });
+    // Need to push to db
+  };
+
   render() {
     // console.log(this.state.data);
 
     if (this.state.status) {
-      console.log(this.state);
+      // console.log(this.state.data);
       const { text, title, genre, createdAt } = this.state.data;
       const author = this.state.data.user.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
@@ -66,34 +72,47 @@ export default class StoryDisplay extends Component {
               </b>
             </div>
             <ShowMoreText lines={5} className="story-text">
-              <p className="story-text">{text}</p>
+              <p>{text}</p>
             </ShowMoreText>
-            <div className="comment-info">
+            <div className="comment-info story-info">
               <p># of Likes</p>
               <div className="button-div">
-                <button
-                  type="button"
-                  className="btn comment-btn"
-                  onClick={this.commentHandler}
-                >
-                  Comment
-                </button>
-                <button
-                  type="button"
-                  className="btn movie-btn"
-                  onClick={this.videoHandler}
-                >
-                  Add Movie
-                </button>
-                <button type="button" className="btn like-btn">
-                  Like
-                </button>
-                <button type="button" className="btn edit-btn">
-                  Edit
-                </button>
-                <button type="button" className="btn delete-btn">
-                  Delete
-                </button>
+                {this.props.user ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn comment-btn"
+                      onClick={this.commentHandler}
+                    >
+                      Comment
+                    </button>
+                    <button
+                      type="button"
+                      className="btn movie-btn"
+                      onClick={this.videoHandler}
+                    >
+                      Add Movie
+                    </button>
+                    <button type="button" className="btn like-btn">
+                      Like
+                    </button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
+                {this.props.user &&
+                this.props.user._id === this.state.data.user._id ? (
+                  <>
+                    <button type="button" className="btn edit-btn">
+                      Edit
+                    </button>
+                    <button type="button" className="btn delete-btn">
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </div>
@@ -108,11 +127,9 @@ export default class StoryDisplay extends Component {
             <Video />
           </div>
           <div className="comment-display">
-            <CommentDisplay {...this.state.data.comments} />
+          {/* Made change.  Please tell me if this is ok? */}
+            <CommentDisplay comments={this.state.data.comments} {...this.props} />
           </div>
-          {/* <div className="comment-form">
-            <Comments {...this.state.data} />
-          </div> */}
           <div className="video-display">
             <VideoDisplay {...this.state.data} className="video" />
           </div>

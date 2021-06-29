@@ -1,0 +1,72 @@
+@import url("../../App.css");
+
+.story-preview {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--color-main);
+    box-shadow: .5vw 1vh rgba(20, 5, 5, 0.7);
+    border-radius: 15px;
+    padding: 1vh 1vw;
+    margin-bottom: 3vh;
+    transition: transform .5s ease;
+}
+
+.story-preview:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.story-preview a {
+    text-decoration: none;
+}
+
+.story-preview img {
+    width: 3vw;
+    height: auto;
+    border-radius: 100%;
+    margin: 1vh 1vw 0;
+}
+
+.preview-title,
+.preview-user,
+.preview-date,
+.preview-info {
+    color: var(--color-light);
+}
+
+.preview-title {
+    margin-bottom: auto;
+}
+
+.preview-user-details {
+    display: flex;
+    align-items: baseline;
+}
+
+.preview-user-details p,
+.preview-date {
+    font-size: 1.25em;
+}
+
+.preview-details {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.preview-text {
+    color: var(--color-main);
+    font-size: 1.2em;
+}
+
+.preview-info {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.preview-likes,
+.preview-comments,
+.preview-videos {
+    margin-right: 1.5vw;
+    font-size: 1.1em;
+}

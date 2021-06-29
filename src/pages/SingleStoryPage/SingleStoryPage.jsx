@@ -4,7 +4,7 @@ import "./SingleStoryPage.css";
 
 export default class SingleStoryPage extends Component {
   render() {
-      console.log(this.props.user)
+      // console.log(this.props.user)
       const { id } = this.props.match.params;
     return (
       <div>

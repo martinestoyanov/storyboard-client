@@ -1,39 +1,16 @@
-import React, { Component } from "react";
-import "./Story.css";
-import * as storyService from "../../../services/Story";
-// import * as PATHS from "../../../utils/paths";
+import React, { Component } from 'react'
+import "./Story.css"
 
-export default class Story extends Component {
-  state = {
-    title: "",
-    genre: "Action/Adventure",
-    text: "",
-    user: this.props.user._id,
-  };
+export default class EditStory extends Component {
+    state = {}
 
-  changeHandler = (event) => {
-    const input = event.target.name;
-    const value = event.target.value;
-    this.setState({
-      [input]: value,
-    });
-  };
 
-  selectionHandler = (event) => {};
 
-  submitHandler = (event) => {
-    event.preventDefault();
-
-    storyService.createStory(this.state).then((responseFromDB) => {
-      console.log(responseFromDB);
-      this.props.history.push(`/story/${responseFromDB.data.newStory._id}`);
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.submitHandler} className="story-form">
+    render() {
+        console.log(this.props)
+        return (
+            <div>
+                <form onSubmit={this.submitHandler} className="story-form">
           <input
             type="text"
             name="title"
@@ -69,7 +46,7 @@ export default class Story extends Component {
             <button type="submit">Post Story</button>
           </div>
         </form>
-      </div>
-    );
-  }
+            </div>
+        )
+    }
 }

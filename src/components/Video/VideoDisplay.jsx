@@ -17,18 +17,20 @@ export default class VideoDisplay extends Component {
   };
 
   render() {
+    const { eachVideo } = this.props;
     return (
       <div>
         <div className="comment-info">
+          {/* video author not currently being queried/passed */}
           <div className="user-info">
             <img src={ProfilePic} alt="Profile Pic" />
             <b><p className="username">SomeUsername</p></b>
           </div>
-          <b><p className="genre">Some genre</p></b>
-          <b><p className="date">Date posted</p></b>
+          <b><p className="genre">{eachVideo.genre}</p></b>
+          <b><p className="date">{eachVideo.createdAt}</p></b>
         </div>
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          url={eachVideo.url}
           controls
           width="100%"
           height="75vh"

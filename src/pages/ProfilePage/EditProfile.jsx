@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./ProfilePage.css";
-import {updateUser} from "../../services/User"
+import { updateUser } from "../../services/User";
 
 export default class EditProfile extends Component {
   state = {
     username: "",
     email: "",
-    pic: "",
+    pictureURL: "",
+    password: "",
   };
 
   componentDidMount() {}
@@ -21,14 +22,14 @@ export default class EditProfile extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     updateUser(this.props.user._id, this.state).then((res) => {
-      alert(` Information updated. You will be logged out. Please log in again using your new information.`);
+      alert(
+        ` Information updated. You will be logged out. Please log in again using your new information.`
+      );
       this.props.handleLogout();
-    })
-
-  }
+    });
+  };
 
   render() {
-
     const { username, pictureURL: pic, email } = this.props.user;
     return (
       <div>
@@ -61,15 +62,29 @@ export default class EditProfile extends Component {
             />
           </div>
           <div className="form-input">
-            <label htmlFor="pic">Profile Pic</label>
+            <label htmlFor="pictureURL">Profile Pic</label>
             <input
               type="text"
-              name="pic"
+              name="pictureURL"
               placeholder={pic}
-              value={this.state.pic}
+              value={this.state.pictureURL}
               onChange={this.changeHandler}
             />
           </div>
+
+          <div className="form-input">
+            <label htmlFor="password">Password</label>
+            <input
+              id="input-password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.changeHandler}
+              minLength="8"
+            />
+          </div>
+
           <button type="submit">Submit</button>
         </form>
       </div>

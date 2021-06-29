@@ -7,7 +7,7 @@ export const PROTECTEDPAGE = "/protected";
 export const TOPCONTENT = "/top-content";
 export const WRITESTORY = `${PROTECTEDPAGE}/write-story`;
 export const INSPIRATION = "/inspiration";
-export const RANDOM = "/story/index?random=true";
+export const RANDOM = "/random";
 export const PROFILEPAGE = `${PROTECTEDPAGE}/profile`;
 export const EDITPROFILE = `${PROTECTEDPAGE}/profile/edit`;
 export const SINGLESTORY = "/story/:id";

@@ -58,7 +58,7 @@ export function getStories(params) {
       qParams += `${QUERY.RANGE.START}=${start}&${QUERY.RANGE.END}=${end}`;
       priorParams = true;
     } else if (random) {
-      qParams += `${QUERY.RANGE.START}=${start}&${QUERY.RANGE.END}=${end}`;
+      qParams += `${QUERY.RANDOM}=${random}`;
       priorParams = true;
     }
     if (populate && Array.isArray(populate)) {

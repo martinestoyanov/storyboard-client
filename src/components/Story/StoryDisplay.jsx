@@ -15,12 +15,16 @@ export default class StoryDisplay extends Component {
   state = {};
 
   componentDidMount = () => {
-    getStory(this.props.id, {
-      [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
-    }).then((story) => {
-      this.setState(story);
-    });
-  };
+    if (!this.props.queried) {
+      getStory(this.props.id, {
+        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
+      }).then((story) => {
+        this.setState(story);
+      });
+    } else if(this.props.fromRandom){
+      this.setState({data : this.props.data.randomStory, status : true})
+    }
+    }
 
   commentHandler = () => {
     let toggle = document.getElementById("comment-form");

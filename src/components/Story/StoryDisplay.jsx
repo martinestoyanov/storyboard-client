@@ -55,7 +55,7 @@ export default class StoryDisplay extends Component {
     if (this.state.status) {
       // console.log(this.state.data);
       const { text, title, genre, createdAt } = this.state.data;
-      const author = this.state.data.user.username;
+      const author = this.state.data.author.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">
@@ -105,7 +105,7 @@ export default class StoryDisplay extends Component {
                   <div></div>
                 )}
                 {this.props.user &&
-                this.props.user._id === this.state.data.user._id ? (
+                this.props.user._id === this.state.data.author._id ? (
                   <>
                     <button type="button" className="btn edit-btn">
                       Edit
@@ -125,7 +125,7 @@ export default class StoryDisplay extends Component {
             id="comment-form"
             style={{ display: "none" }}
           >
-            <Comments {...this.state.data} />
+            <Comments storyId={this.state.data._id} user={this.props.user} />
           </div>
           <div id="video-form" style={{ display: "none" }}>
             <Video />
@@ -134,10 +134,7 @@ export default class StoryDisplay extends Component {
           {this.state.data.comments.map((eachComment, index) => (
             <div className="comment-display">
               {/* Made change.  Please tell me if this is ok? */}
-              <CommentDisplay
-                eachComment = {eachComment}
-                {...this.props}
-              />
+              <CommentDisplay eachComment={eachComment} {...this.props} />
             </div>
           ))}
 

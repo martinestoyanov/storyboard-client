@@ -4,7 +4,7 @@ import "./Comments.css";
 
 export default class Comments extends Component {
   state = {
-    story: this.props._id,
+    story: this.props.storyId,
     text: "",
     author: this.props.user._id,
   };

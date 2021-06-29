@@ -21,10 +21,10 @@ export default class StoryDisplay extends Component {
       }).then((story) => {
         this.setState(story);
       });
-    } else if(this.props.fromRandom){
-      this.setState({data : this.props.data.randomStory, status : true})
+    } else if (this.props.fromRandom) {
+      this.setState({ data: this.props.data.randomStory, status: true });
     }
-    }
+  };
 
   commentHandler = () => {
     let toggle = document.getElementById("comment-form");
@@ -130,10 +130,17 @@ export default class StoryDisplay extends Component {
           <div id="video-form" style={{ display: "none" }}>
             <Video />
           </div>
-          <div className="comment-display">
-          {/* Made change.  Please tell me if this is ok? */}
-            <CommentDisplay comments={this.state.data.comments} {...this.props} />
-          </div>
+
+          {this.state.data.comments.map((eachComment, index) => (
+            <div className="comment-display">
+              {/* Made change.  Please tell me if this is ok? */}
+              <CommentDisplay
+                eachComment = {eachComment}
+                {...this.props}
+              />
+            </div>
+          ))}
+
           <div className="video-display">
             <VideoDisplay {...this.state.data} className="video" />
           </div>

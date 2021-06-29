@@ -17,7 +17,7 @@ export default class StoryDisplay extends Component {
   componentDidMount = () => {
     if (!this.props.queried) {
       getStory(this.props.id, {
-        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS],
+        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS, STORY.VIDEOS],
       }).then((story) => {
         this.setState(story);
       });
@@ -133,17 +133,15 @@ export default class StoryDisplay extends Component {
 
           {this.state.data.comments.map((eachComment, index) => (
             <div className="comment-display">
-              {/* Made change.  Please tell me if this is ok? */}
-              <CommentDisplay
-                eachComment = {eachComment}
-                {...this.props}
-              />
+              <CommentDisplay eachComment={eachComment} {...this.props} />
             </div>
           ))}
 
-          <div className="video-display">
-            <VideoDisplay {...this.state.data} className="video" />
-          </div>
+          {this.state.data.video_contributions.map((eachVideo, index) => (
+            <div className="video-display">
+              <VideoDisplay eachVideo={eachVideo} {...this.props} className="video" />
+            </div>
+          ))}
         </div>
       );
     } else return <div></div>;

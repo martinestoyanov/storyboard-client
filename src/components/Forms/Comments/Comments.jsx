@@ -4,14 +4,14 @@ import "./Comments.css";
 
 export default class Comments extends Component {
   state = {
-    story:"",
+    story: this.props._id,
     text: "",
     author: this.props.user._id,
   };
 
   componentDidMount() {
-    this.setState({ story: this.props._id ,author: this.props.user._id});
-    // console.log(this.state);
+    // this.setState({ story: this.props._id });
+    console.log(this.props);
   }
   
 
@@ -29,13 +29,14 @@ export default class Comments extends Component {
     // "service" is not correct/"createComment" has not be created yet
     //------------------------------------------------------------------
     commentService.createComment(this.state).then((responseFromDB) => {
-      console.log(responseFromDB);
+      console.log("response: ", responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
       // this.props.push("/storytellers");
     });
   };
 
   render() {
+    // console.log(this.props)
     return (
       <div className="comment-frm">
         <form onSubmit={this.submitHandler}>

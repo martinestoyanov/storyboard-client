@@ -72,9 +72,9 @@ export function getUser(id, params) {
     .catch(internalServerError);
 }
 
-export function updateUser(id) {
+export function updateUser(id, info) {
   return userService
-    .post(`/${id}/update`, {
+    .post(`/${id}/update`, info ,  {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },

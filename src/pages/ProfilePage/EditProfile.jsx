@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./ProfilePage.css";
+import {updateUser} from "../../services/User"
 
 export default class EditProfile extends Component {
   state = {
@@ -18,12 +19,16 @@ export default class EditProfile extends Component {
   };
 
   submitHandler = (event) => {
-      event.preventDefalut();
-    //   more code goes here
+    event.preventDefault();
+    updateUser(this.props.user._id, this.state).then((res) => {
+      alert(` Information updated. You will be logged out. Please log in again using your new information.`);
+      this.props.handleLogout();
+    })
+
   }
 
   render() {
-    // console.log(this.state);
+
     const { username, pictureURL: pic, email } = this.props.user;
     return (
       <div>

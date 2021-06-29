@@ -52,6 +52,7 @@ export default class GenrePage extends Component {
       [QUERY.GENRE]: genre,
       [QUERY.POPULATE]: [STORY.AUTHOR],
     }).then((result) => {
+      // console.log(result.data)
       this.setState({
         stories: result.data,
         genre,
@@ -60,6 +61,7 @@ export default class GenrePage extends Component {
   };
 
   render() {
+    // console.log(this.state)
     if (!this.state.stories || this.state.stories.total === 0) {
       return (
         <div>
@@ -82,7 +84,7 @@ export default class GenrePage extends Component {
                       <img src={ProfilePic} alt="Profile pic." />
                       <b>
                         <p className="preview-user">
-                          {eachStory.user.username}
+                          {eachStory.author.username}
                         </p>
                       </b>
                     </div>

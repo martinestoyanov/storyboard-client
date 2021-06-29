@@ -29,7 +29,7 @@ export const USER = {
 };
 
 export const STORY = {
-  AUTHOR: "user",
+  AUTHOR: "author",
   VIDEOS: "video_contributions",
   COMMENTS: "comments",
 };

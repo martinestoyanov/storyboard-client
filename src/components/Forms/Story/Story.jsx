@@ -8,7 +8,7 @@ export default class Story extends Component {
     title: "",
     genre: "Action/Adventure",
     text: "",
-    user: this.props.user._id,
+    author: this.props.user._id,
   };
 
   changeHandler = (event) => {

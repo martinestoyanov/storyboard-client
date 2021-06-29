@@ -61,7 +61,7 @@ export default class GenrePage extends Component {
   };
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     if (!this.state.stories || this.state.stories.total === 0) {
       return (
         <div>

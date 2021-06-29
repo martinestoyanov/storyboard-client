@@ -20,11 +20,11 @@ export default class CommentDisplay extends Component {
             <div className="user-info">
               <img src={eachComment.pictureURL} alt="Profile Pic" />
               <b>
-                <p className="username">SomeUsername</p>
+                <p className="username">{eachComment.author}</p>
               </b>
             </div>
             <b>
-              <p className="date">Date posted</p>
+              <p className="date">{eachComment.createdAt}</p>
             </b>
           </div>
           <ShowMoreText className="text" lines={2}>

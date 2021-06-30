@@ -1,0 +1,54 @@
+@import url("../../../App.css");
+
+.story-form {
+    display: flex;
+    flex-flow: column;
+    margin-right: 6vw;
+}
+
+.story-form input,
+.story-form select,
+.story-form textarea,
+.story-form button {
+    margin: 1vh 0;
+}
+
+.story-form input,
+.story-form textarea {
+    background-color: transparent;
+    border: none;
+}
+
+.story-form input:focus,
+.story-form textarea:focus {
+    outline: none;
+}
+
+.story-form input {
+    font-size: 1.5em;
+}
+
+.story-form select {
+    font-size: .9em;
+}
+
+.story-form textarea {
+    font-size: 1.1em;
+    width: 100%;
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.story-form button {
+    font-size: 1em;
+    padding: .5vh .5vw;
+    background-color: var(--color-main);
+    border-color: var(--color-dark);
+    color: var(--white);
+    margin-left: 15vw;
+}
+
+.story-form button:hover {
+    cursor: pointer;
+}

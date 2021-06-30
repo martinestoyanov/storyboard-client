@@ -88,6 +88,10 @@
     color: var(--white);
 }
 
+.edit-btn {
+    text-decoration: none;
+}
+
 .btn:hover {
     cursor: pointer;
 }

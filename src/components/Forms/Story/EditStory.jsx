@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
-import "./Story.css"
+import React, { Component } from "react";
+import "./Story.css";
 
 export default class EditStory extends Component {
-    state = {}
+  state = {};
 
-
-
-    render() {
-        console.log(this.props)
-        return (
-            <div>
-                <form onSubmit={this.submitHandler} className="story-form">
+  render() {
+    // console.log(this.props);
+    return (
+      <div>
+        <form onSubmit={this.submitHandler} className="story-form">
           <input
             type="text"
             name="title"
@@ -46,7 +44,7 @@ export default class EditStory extends Component {
             <button type="submit">Post Story</button>
           </div>
         </form>
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }

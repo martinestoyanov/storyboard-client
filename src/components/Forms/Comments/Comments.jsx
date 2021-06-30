@@ -11,7 +11,7 @@ export default class Comments extends Component {
 
   componentDidMount() {
     // this.setState({ story: this.props._id });
-    console.log(this.props);
+    // console.log(this.props);
   }
   
 
@@ -24,12 +24,12 @@ export default class Comments extends Component {
   };
 
   submitHandler = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     //-----------------------------BOTH CREATED! -----------------------
     // "service" is not correct/"createComment" has not be created yet
     //------------------------------------------------------------------
     commentService.createComment(this.state).then((responseFromDB) => {
-      console.log("response: ", responseFromDB);
+      // console.log("response: ", responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
       // this.props.push("/storytellers");
     });

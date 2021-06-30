@@ -102,7 +102,7 @@ export default class StoryDisplay extends Component {
                     </button>
                   </>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
                 {this.props.user &&
                 this.props.user._id === this.state.data.author._id ? (
@@ -115,7 +115,7 @@ export default class StoryDisplay extends Component {
                     </button>
                   </>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
               </div>
             </div>
@@ -144,6 +144,6 @@ export default class StoryDisplay extends Component {
           ))}
         </div>
       );
-    } else return <div></div>;
+    } else return <></>;
   }
 }

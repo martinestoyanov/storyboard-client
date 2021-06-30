@@ -11,7 +11,7 @@ export default class Comments extends Component {
 
   componentDidMount() {
     // this.setState({ story: this.props._id });
-    console.log(this.props);
+    // console.log(this.props);
   }
   
 

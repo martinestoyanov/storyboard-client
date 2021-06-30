@@ -5,16 +5,38 @@ import dateFormat from "dateformat";
 import "./CommentDisplay.css";
 
 export default class CommentDisplay extends Component {
-  state = {};
+  state = {
+    upvotes: 0,
+    isLiked: false,
+  };
 
   // componentDidMount() {
   //   this.setState(this.props);
   // }
 
+  upvoteHandler = () => {
+    let likeBtn = document.getElementById("like-comment");
+    if (this.state.isLiked === false) {
+      likeBtn.style.backgroundColor = "#651a1a";
+      this.setState({
+        upvotes: this.state.upvotes + 1,
+        isLiked: true,
+      });
+    } else if (this.state.isLiked === true) {
+      likeBtn.style.backgroundColor = "#290a0a";
+      this.setState({
+        upvotes: this.state.upvotes - 1,
+        isLiked: false,
+      });
+    }
+    // Needs to push to proper location. eachComment does not track upvotes.
+    // this.props.user.push(this.state.upvotes);
+  };
+
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
-    console.log(this.props);
+    // console.log(this.props.user);
     return (
       <div className="comments">
         <div className="comment-info">
@@ -36,7 +58,12 @@ export default class CommentDisplay extends Component {
           <div className="button-div">
             {this.props.user ? (
               <>
-                <button type="button" className="btn like-btn">
+                <button
+                  type="button"
+                  id="like-comment"
+                  className="btn like-btn"
+                  onClick={this.upvoteHandler}
+                >
                   Like
                 </button>
               </>

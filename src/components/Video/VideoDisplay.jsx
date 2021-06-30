@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import ReactPlayer from "react-player";
 import ProfilePic from "../../images/profile-silhouette.png";
 import dateFormat from "dateformat";
+import * as videoService from "../../services/Video.js";
 import "./VideoDisplay.css";
 
 export default class VideoDisplay extends Component {
-  state = { muted: true };
+  state = { 
+    muted: true,
+    upvotes: 0,
+    isLiked: false,
+   };
 
   componentDidMount = () => {
     // getStory(this.props.id).then((story) => {
@@ -13,12 +18,33 @@ export default class VideoDisplay extends Component {
     // });
   };
 
+  upvoteHandler = () => {
+    let likeBtn = document.getElementById("like-video");
+    if (this.state.isLiked === false) {
+      likeBtn.style.backgroundColor = "#651a1a";
+      this.setState({
+        upvotes: this.state.upvotes + 1,
+        isLiked: true,
+      });
+    } else if (this.state.isLiked === true) {
+      likeBtn.style.backgroundColor = "#290a0a";
+      this.setState({
+        upvotes: this.state.upvotes - 1,
+        isLiked: false,
+      });
+    }
+    // Needs to push to proper location.
+    videoService.updateVideo(this.props.eachVideo._id).then((responseFromDB) => {
+      console.log(responseFromDB);
+    })
+  };
+
   autoUnMute = (event) => {
     this.setState({ muted: false });
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { createdAt, genre, title, upvotes, url, user } =
       this.props.eachVideo;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
@@ -46,7 +72,7 @@ export default class VideoDisplay extends Component {
             <u>{title}</u>
           </b>
           <div className="button-div">
-            <button type="button" className="btn like-btn">
+            <button type="button" id="like-video" className="btn like-btn" onClick={this.upvoteHandler}>
               Like
             </button>
             <button type="button" className="btn edit-btn">

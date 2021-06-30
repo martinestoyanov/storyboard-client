@@ -34,7 +34,7 @@ export function createComment(info) {
       },
     })
     .then((res) => {
-      console.log("comments service response",res);
+      console.log("comments service response", res);
       successStatus();
     })
     .catch((err) => internalServerError(err));
@@ -102,9 +102,9 @@ export function getComment(id, params) {
     .catch(internalServerError);
 }
 
-export function updateComment(id) {
+export function updateComment(id, info) {
   return commentService
-    .post(`/${id}/update`, {
+    .post(`/${id}/update`, info, {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },

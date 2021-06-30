@@ -107,9 +107,9 @@ export function getVideo(id, params) {
     .catch(internalServerError);
 }
 
-export function updateVideo(id) {
+export function updateVideo(id, info) {
   return videoService
-    .post(`/${id}/update`, {
+    .post(`/${id}/update`, info, {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },

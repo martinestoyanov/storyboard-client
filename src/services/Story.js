@@ -108,9 +108,9 @@ export function getStory(id, params) {
     .catch(internalServerError);
 }
 
-export function updateStory(id) {
+export function updateStory(id, info) {
   return storyService
-    .post(`/${id}/update`, {
+    .post(`/${id}/update`, info, {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },

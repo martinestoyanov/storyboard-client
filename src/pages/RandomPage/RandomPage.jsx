@@ -40,7 +40,7 @@ export default class RandomPage extends Component {
       <div>
         {this.state.result ? (
           <>
-            <StoryDisplay queried fromRandom {...this.state.result} />
+            <StoryDisplay queried fromRandom {...this.state.result} user={this.props} />
           </>
         ) : (
           <h1>Loading a random story. Hang tight...</h1>

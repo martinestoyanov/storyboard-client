@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProfilePic from "../../images/profile-silhouette.png";
+import EditComments from "../Forms/Comments/EditComments"
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import "./CommentDisplay.css";
@@ -33,12 +34,25 @@ export default class CommentDisplay extends Component {
     // this.props.user.push(this.state.upvotes);
   };
 
+  editCommentHandler = () => {
+    let commentDisplay = document.getElementById("comment-display");
+    let editCommentDisplay = document.getElementById("edit-comment-display");
+    if (editCommentDisplay.style.display === "none") {
+      editCommentDisplay.style.display = "block";
+      commentDisplay.style.display = "none";
+    } else {
+      editCommentDisplay.style.display = "none";
+      commentDisplay.style.display = "block";
+    }
+  }
+
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
-    // console.log(this.props.user);
+    // console.log(this.props.eachComment);
     return (
-      <div className="comments">
+      <>
+      <div className="comments" id="comment-display">
         <div className="comment-info">
           <div className="user-info">
             <img src={ProfilePic} alt="Profile Pic" />
@@ -72,7 +86,7 @@ export default class CommentDisplay extends Component {
             )}
             {this.props.user && this.props.user._id === author ? (
               <>
-                <button type="button" className="btn edit-btn">
+                <button type="button" className="btn edit-btn" onClick={this.editCommentHandler}>
                   Edit
                 </button>
                 <button type="button" className="btn edit-btn">
@@ -85,6 +99,10 @@ export default class CommentDisplay extends Component {
           </div>
         </div>
       </div>
+      <div className="edit-comments" id="edit-comment-display" style={{display:"none"}}>
+        <EditComments comment={this.props.eachComment} />
+      </div>
+      </>
     );
   }
 }

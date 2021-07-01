@@ -34,8 +34,9 @@ export default class VideoDisplay extends Component {
       });
     }
     // Needs to push to proper location.
-    videoService.updateVideo(this.props.eachVideo._id).then((responseFromDB) => {
-      console.log(responseFromDB);
+    videoService.updateVideo(this.props.user.upvotes).then((responseFromDB) => {
+      console.log("DB Response: ", responseFromDB);
+      // this.props.history.push(`/video/${this.props.eachVideo._id}/update`)
     })
   };
 
@@ -44,7 +45,7 @@ export default class VideoDisplay extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { createdAt, genre, title, upvotes, url, user } =
       this.props.eachVideo;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { getStory } from "../../services/Story";
+import { getComments } from "../../services/Comment";
+import { getVideo } from "../../services/Video";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import VideoDisplay from "../Video/VideoDisplay";
@@ -9,7 +11,7 @@ import Comments from "../Forms/Comments/Comments";
 // import EditComments from "../Forms/Comments/EditComments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
-import { QUERY, STORY } from "../../utils/queryConsts";
+import { QUERY, STORY, COMMENT, VIDEO } from "../../utils/queryConsts";
 import { Link } from "react-router-dom";
 import * as PATHS from "../../utils/paths.js"
 
@@ -22,9 +24,30 @@ export default class StoryDisplay extends Component {
   componentDidMount = () => {
     if (!this.props.queried) {
       getStory(this.props.id, {
-        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.COMMENTS, STORY.VIDEOS],
+        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.VIDEOS],
       }).then((story) => {
-        this.setState(story);
+        const fullData = story;
+        console.log(story.data);
+        const commentsPop = getComments({
+          [QUERY.NAME.STORY]: story.data.title,
+          [QUERY.NAME.USER]: story.data.author.username,
+          [QUERY.POPULATE]: [COMMENT.AUTHOR],
+        });
+
+        //This code block is incomplete, left for reference.
+        // const videosPop = getVideo({
+        // 
+        //   [QUERY.POPULATE]: [VIDEO.COMMENTS],
+        // });
+
+        Promise.all([commentsPop,
+          // videosPop
+        ]).then((pops) => {
+          fullData.data.comments = pops[0].data.comments;
+          // fullData.videosPop = pops[1];
+          this.setState(fullData);
+          console.log(this.state);
+        });
       });
     } else if (this.props.fromRandom) {
       this.setState({ data: this.props.data.randomStory, status: true });
@@ -149,13 +172,22 @@ export default class StoryDisplay extends Component {
 
           {this.state.data.comments.map((eachComment, index) => (
             <div className="comment-display">
-              <CommentDisplay eachComment={eachComment} {...this.props} />
+              <CommentDisplay
+                eachComment={eachComment}
+                key={eachComment._id}
+                {...this.props}
+              />
             </div>
           ))}
 
           {this.state.data.video_contributions.map((eachVideo, index) => (
             <div className="video-display">
-              <VideoDisplay eachVideo={eachVideo} {...this.props} className="video" />
+              <VideoDisplay
+                eachVideo={eachVideo}
+                key={eachVideo._id}
+                {...this.props}
+                className="video"
+              />
             </div>
           ))}
         </div>

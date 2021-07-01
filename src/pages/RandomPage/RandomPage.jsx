@@ -35,12 +35,14 @@ export default class RandomPage extends Component {
   // }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state.result);
     return (
       <div>
         {this.state.result ? (
           <>
-            <StoryDisplay queried fromRandom {...this.state.result} user={this.props} />
+            <StoryDisplay queried fromRandom {...this.state.result} user={this.props}
+            // eachComment={this.state.result.data.randomStory.comments}
+             />
           </>
         ) : (
           <h1>Loading a random story. Hang tight...</h1>

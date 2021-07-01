@@ -14,8 +14,8 @@ export const QUERY = {
   NAME: {
     //value type: string
     USER: "userName",
-    VIDEO: "storyName",
-    STORY: "videoName",
+    VIDEO: "videoName",
+    STORY: "storyName",
   },
   SEARCH: "searchTerm", //value type: string
   GENRE: "genre", //value type: string (select value from GENRE if not searching for genres)

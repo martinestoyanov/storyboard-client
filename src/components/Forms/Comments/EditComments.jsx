@@ -27,7 +27,7 @@ export default class EditComments extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     // const { text } = this.props.comment;
     return (
       <div className="comment-frm">

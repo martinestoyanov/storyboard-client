@@ -22,36 +22,33 @@ export default class StoryDisplay extends Component {
   };
 
   componentDidMount = () => {
-    if (!this.props.queried) {
-      getStory(this.props.id, {
-        [QUERY.POPULATE]: [STORY.AUTHOR, STORY.VIDEOS],
-      }).then((story) => {
-        const fullData = story;
-        console.log(story.data);
-        const commentsPop = getComments({
-          [QUERY.NAME.STORY]: story.data.title,
-          [QUERY.NAME.USER]: story.data.author.username,
-          [QUERY.POPULATE]: [COMMENT.AUTHOR],
-        });
+    getStory(this.props.id, {
+      [QUERY.POPULATE]: [STORY.AUTHOR, STORY.VIDEOS],
+    }).then((story) => {
+      const fullData = story;
+      // console.log("state on 45",this.state);
 
-        //This code block is incomplete, left for reference.
-        // const videosPop = getVideo({
-        // 
-        //   [QUERY.POPULATE]: [VIDEO.COMMENTS],
-        // });
-
-        Promise.all([commentsPop,
-          // videosPop
-        ]).then((pops) => {
-          fullData.data.comments = pops[0].data.comments;
-          // fullData.videosPop = pops[1];
-          this.setState(fullData);
-          console.log(this.state);
-        });
+      const commentsPop = getComments({
+        [QUERY.NAME.STORY]: story.data.title,
+        [QUERY.NAME.USER]: story.data.author.username,
+        [QUERY.POPULATE]: [COMMENT.AUTHOR],
       });
-    } else if (this.props.fromRandom) {
-      this.setState({ data: this.props.data.randomStory, status: true });
-    }
+
+      //This code block is incomplete, left for reference.
+      // const videosPop = getVideo({
+      //
+      //   [QUERY.POPULATE]: [VIDEO.COMMENTS],
+      // });
+
+      Promise.all([
+        commentsPop,
+        // videosPop
+      ]).then((pops) => {
+        fullData.data.comments = pops[0].data.comments;
+        // fullData.videosPop = pops[1];
+        this.setState(fullData);
+      });
+    });
   };
 
   commentHandler = () => {
@@ -61,6 +58,13 @@ export default class StoryDisplay extends Component {
     } else {
       toggle.style.display = "none";
     }
+  };
+
+  commentUpdateHandler = (newComment) => {
+    console.log("new comment",newComment)
+    let currentData = {...this.state.data};
+    currentData.comments.push(newComment);
+    this.setState({ data: currentData });
   };
 
   videoHandler = () => {
@@ -164,7 +168,11 @@ export default class StoryDisplay extends Component {
             id="comment-form"
             style={{ display: "none" }}
           >
-            <Comments storyId={this.state.data._id} user={this.props.user} />
+            <Comments
+              storyId={this.state.data._id}
+              user={this.props.user}
+              updateComments={this.commentUpdateHandler}
+            />
           </div>
           <div id="video-form" style={{ display: "none" }}>
             <Video />
@@ -172,6 +180,7 @@ export default class StoryDisplay extends Component {
 
           {this.state.data.comments.map((eachComment, index) => (
             <div className="comment-display">
+              Comments go here
               <CommentDisplay
                 eachComment={eachComment}
                 key={eachComment._id}

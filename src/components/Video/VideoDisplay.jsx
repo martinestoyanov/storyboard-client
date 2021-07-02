@@ -56,7 +56,7 @@ export default class VideoDisplay extends Component {
           <div className="user-info">
             <img src={ProfilePic} alt="Profile Pic" />
             <b>
-              <p className="username">{user}</p>
+              <p className="username">{user.username}</p>
             </b>
           </div>
           <b>

@@ -23,7 +23,7 @@ export default class Video extends Component {
     event.preventDefault();
     // "service" is not correct/"createVideo" has not be created yet
     videoService.createVideo(this.state).then((responseFromDB) => {
-      console.log(responseFromDB);
+      // console.log(responseFromDB);
       //   "/storytellers" has not been created yet
       this.props.push("/storytellers");
     });

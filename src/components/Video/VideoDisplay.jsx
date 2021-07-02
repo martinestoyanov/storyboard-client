@@ -46,7 +46,7 @@ export default class VideoDisplay extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { createdAt, genre, title, upvotes, url, user } =
       this.props.eachVideo;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");

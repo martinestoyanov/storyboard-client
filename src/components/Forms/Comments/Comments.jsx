@@ -32,7 +32,7 @@ export default class Comments extends Component {
       console.log("response: ", responseFromDB);
       // this.props.updateComments(responseFromDB);
       //   "/storytellers" has not been created yet/Redirect somewhere else?
-      // this.props.history.push(`/story/${this.props.storyId}`);
+      this.props.history.push(`/story/${responseFromDB.data.story._id}`);
     });
   };
 

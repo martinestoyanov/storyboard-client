@@ -1,13 +1,27 @@
 import React, { Component } from "react";
 import * as storyService from "../../../services/Story.js";
+import { QUERY, STORY, COMMENT, VIDEO } from "../../../utils/queryConsts.js";
 import "./Story.css";
 
 export default class EditStory extends Component {
   state = {
-    title: this.props.location.story.title,
-    genre: this.props.location.story.genre,
-    text: this.props.location.story.text,
+    // title: this.props.location.story.title,
+    // genre: this.props.location.story.genre,
+    // text: this.props.location.story.text,
   };
+
+  componentDidMount() {
+    storyService.getStory(this.props.match.params.id, {
+      [QUERY.POPULATE]: [STORY.AUTHOR, STORY.VIDEOS],
+    }).then((story) => {
+      console.log("Story: ", story)
+      this.setState({
+        title: story.data.title,
+        genre: story.data.genre,
+        text: story.data.text,
+      })
+    })
+  }
 
   changeHandler = (event) => {
     const input = event.target.name;
@@ -21,7 +35,7 @@ export default class EditStory extends Component {
     event.preventDefault();
 
     storyService
-      .updateStory(this.props.location.story._id, this.state)
+      .updateStory(this.props.match.params.id, this.state)
       .then((responseFromDB) => {
         console.log("DB Response: ", responseFromDB);
         this.props.history.push(`/story/${responseFromDB.data._id}`);

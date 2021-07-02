@@ -100,7 +100,7 @@ export default class CommentDisplay extends Component {
         </div>
       </div>
       <div className="edit-comments" id="edit-comment-display" style={{display:"none"}}>
-        <EditComments comment={this.props.eachComment} />
+        <EditComments {...this.props} />
       </div>
       </>
     );

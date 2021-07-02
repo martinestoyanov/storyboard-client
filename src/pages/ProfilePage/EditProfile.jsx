@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ProfilePage.css";
 import { updateUser } from "../../services/User";
+import cleanDeep from "clean-deep";
 
 export default class EditProfile extends Component {
   state = {
@@ -21,7 +22,9 @@ export default class EditProfile extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    updateUser(this.props.user._id, this.state).then((res) => {
+    const sanitizedState = cleanDeep(this.state);
+    console.log(sanitizedState)
+    updateUser(this.props.user._id, sanitizedState).then((res) => {
       alert(
         ` Information updated. You will be logged out. Please log in again using your new information.`
       );

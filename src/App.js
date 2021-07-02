@@ -11,6 +11,7 @@ import ProtectedRoute from "./routing-components/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import EditProfile from "./pages/ProfilePage/EditProfile.jsx";
 import WriteStoryPage from "./pages/WriteStoryPage/WriteStoryPage.jsx";
+import EditStoryPage from "./pages/WriteStoryPage/EditStoryPage.jsx";
 import SingleStoryPage from "./pages/SingleStoryPage/SingleStoryPage";
 import TopContentPage from "./pages/TopContentPage/TopContentPage.jsx";
 import InspirationPage from "./pages/InspirationPage/InspirationPage.jsx";
@@ -160,6 +161,12 @@ class App extends React.Component {
             exact
             path={PATHS.WRITESTORY}
             component={WriteStoryPage}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.EDITSTORY}
+            component={EditStoryPage}
             user={this.state.user}
           />
         </Switch>

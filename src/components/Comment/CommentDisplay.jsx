@@ -1,22 +1,58 @@
 import React, { Component } from "react";
 import ProfilePic from "../../images/profile-silhouette.png";
+import EditComments from "../Forms/Comments/EditComments"
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import "./CommentDisplay.css";
 
 export default class CommentDisplay extends Component {
-  state = {};
+  state = {
+    upvotes: 0,
+    isLiked: false,
+  };
 
   // componentDidMount() {
   //   this.setState(this.props);
   // }
+
+  upvoteHandler = () => {
+    let likeBtn = document.getElementById("like-comment");
+    if (this.state.isLiked === false) {
+      likeBtn.style.backgroundColor = "#651a1a";
+      this.setState({
+        upvotes: this.state.upvotes + 1,
+        isLiked: true,
+      });
+    } else if (this.state.isLiked === true) {
+      likeBtn.style.backgroundColor = "#290a0a";
+      this.setState({
+        upvotes: this.state.upvotes - 1,
+        isLiked: false,
+      });
+    }
+    // Needs to push to proper location. eachComment does not track upvotes.
+    // this.props.user.push(this.state.upvotes);
+  };
+
+  editCommentHandler = () => {
+    let commentDisplay = document.getElementById("comment-display");
+    let editCommentDisplay = document.getElementById("edit-comment-display");
+    if (editCommentDisplay.style.display === "none") {
+      editCommentDisplay.style.display = "block";
+      commentDisplay.style.display = "none";
+    } else {
+      editCommentDisplay.style.display = "none";
+      commentDisplay.style.display = "block";
+    }
+  }
 
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
     console.log(this.props);
     return (
-      <div className="comments">
+      <>
+      <div className="comments" id="comment-display">
         <div className="comment-info">
           <div className="user-info">
             <img src={author.profileURL||ProfilePic} alt="Profile Pic" />
@@ -36,16 +72,21 @@ export default class CommentDisplay extends Component {
           <div className="button-div">
             {this.props.user ? (
               <>
-                <button type="button" className="btn like-btn">
+                <button
+                  type="button"
+                  id="like-comment"
+                  className="btn like-btn"
+                  onClick={this.upvoteHandler}
+                >
                   Like
                 </button>
               </>
             ) : (
               <div></div>
             )}
-            {this.props.user && this.props.user._id === author ? (
+            {this.props.user && this.props.user._id === author._id ? (
               <>
-                <button type="button" className="btn edit-btn">
+                <button type="button" className="btn edit-btn" onClick={this.editCommentHandler}>
                   Edit
                 </button>
                 <button type="button" className="btn edit-btn">
@@ -58,6 +99,10 @@ export default class CommentDisplay extends Component {
           </div>
         </div>
       </div>
+      <div className="edit-comments" id="edit-comment-display" style={{display:"none"}}>
+        <EditComments comment={this.props.eachComment} />
+      </div>
+      </>
     );
   }
 }

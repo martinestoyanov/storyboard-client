@@ -27,7 +27,7 @@ export default class StoryDisplay extends Component {
         [QUERY.POPULATE]: [STORY.AUTHOR, STORY.VIDEOS],
       }).then((story) => {
         const fullData = story;
-        console.log(story.data);
+        // console.log(story.data);
         const commentsPop = getComments({
           [QUERY.NAME.STORY]: story.data.title,
           [QUERY.NAME.USER]: story.data.author.username,
@@ -46,7 +46,7 @@ export default class StoryDisplay extends Component {
           fullData.data.comments = pops[0].data.comments;
           // fullData.videosPop = pops[1];
           this.setState(fullData);
-          console.log(this.state);
+          // console.log(this.state);
         });
       });
     } else if (this.props.fromRandom) {
@@ -92,10 +92,10 @@ export default class StoryDisplay extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    // console.log(this.state);
 
     if (this.state.status) {
-      const { text, title, genre, createdAt } = this.state.data;
+      const { text, title, genre, createdAt, upvotes } = this.state.data;
       const author = this.state.data.author.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
@@ -120,7 +120,7 @@ export default class StoryDisplay extends Component {
               <p>{text}</p>
             </ShowMoreText>
             <div className="comment-info story-info">
-              <p># of Likes</p>
+              <p>{upvotes?.length} Likes</p>
               <div className="button-div">
                 {this.props.user ? (
                   <>

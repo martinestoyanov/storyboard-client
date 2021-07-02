@@ -49,7 +49,7 @@ export default class CommentDisplay extends Component {
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <>
       <div className="comments" id="comment-display">
@@ -68,7 +68,7 @@ export default class CommentDisplay extends Component {
           <p className="text">{text}</p>
         </ShowMoreText>
         <div className="comment-info">
-          {!upvotes ? <p>0 Likes</p> : <p>{upvotes} Likes</p>}
+          <p>{upvotes?.length} Likes</p>
           <div className="button-div">
             {this.props.user ? (
               <>

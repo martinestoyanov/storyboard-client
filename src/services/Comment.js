@@ -20,6 +20,7 @@ function internalServerError(err) {
   };
 }
 function successStatus(res) {
+  console.log("comment services", res)
   return {
     status: true,
     data: res.data,
@@ -33,10 +34,7 @@ export function createComment(info) {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },
     })
-    .then((res) => {
-      console.log("comments service response", res);
-      successStatus();
-    })
+    .then(successStatus)
     .catch((err) => internalServerError(err));
 }
 

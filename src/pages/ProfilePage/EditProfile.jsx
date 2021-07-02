@@ -36,7 +36,7 @@ export default class EditProfile extends Component {
         <h2>Edit Profile Page</h2>
         <div className="edit-profile-pic">
           <img
-            src="https://cdn3.vectorstock.com/i/1000x1000/97/32/man-silhouette-profile-picture-vector-2139732.jpg"
+            src={pic}
             alt="Profile pic"
           />
         </div>

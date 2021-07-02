@@ -122,6 +122,7 @@ class App extends React.Component {
             path={PATHS.RANDOM}
             authenticate={this.authenticate}
             component={RandomPage}
+            user={this.state.user}
           />
           <NormalRoute
             exact

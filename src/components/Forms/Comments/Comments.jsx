@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import * as commentService from "../../../services/Comment";
 import "./Comments.css";
+import { getComment } from "../../../services/Comment";
+import { QUERY, COMMENT } from "../../../utils/queryConsts";
 
 export default class Comments extends Component {
   state = {
@@ -25,14 +27,18 @@ export default class Comments extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    //-----------------------------BOTH CREATED! -----------------------
-    // "service" is not correct/"createComment" has not be created yet
-    //------------------------------------------------------------------
+
     commentService.createComment(this.state).then((responseFromDB) => {
       console.log("response: ", responseFromDB);
-      // this.props.updateComments(responseFromDB);
-      //   "/storytellers" has not been created yet/Redirect somewhere else?
-      this.props.history.push(`/story/${responseFromDB.data.story._id}`);
+      getComment(responseFromDB.data.newComment._id, {
+        [QUERY.POPULATE]: [COMMENT.AUTHOR],
+      }).then((populatedComment) => {
+        // console.log("POPULATED COMMENT ",populatedComment);
+        this.props.updateComments(populatedComment);
+      });
+
+      
+
     });
   };
 

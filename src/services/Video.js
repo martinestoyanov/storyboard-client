@@ -49,6 +49,7 @@ export function getVideos(params) {
       [QUERY.RANDOM]: random,
       [QUERY.POPULATE]: populate,
       [QUERY.NAME.USER]: user,
+      [QUERY.NAME.STORY]: story,
       [QUERY.SEARCH]: search,
       [QUERY.GENRE]: genre,
     } = params;
@@ -78,6 +79,11 @@ export function getVideos(params) {
     if (genre) {
       if (priorParams) qParams += "&";
       qParams += `${QUERY.GENRE}=${genre}`;
+      priorParams = true;
+    }
+    if (story) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.STORY}=${story}`;
       priorParams = true;
     }
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getStory } from "../../services/Story";
 import { getComments } from "../../services/Comment";
-import { getVideo } from "../../services/Video";
+import { getVideos } from "../../services/Video";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import VideoDisplay from "../Video/VideoDisplay";
@@ -34,18 +34,18 @@ export default class StoryDisplay extends Component {
         [QUERY.POPULATE]: [COMMENT.AUTHOR],
       });
 
-      //This code block is incomplete, left for reference.
-      // const videosPop = getVideo({
-      //
-      //   [QUERY.POPULATE]: [VIDEO.COMMENTS],
-      // });
+      const videosPop = getVideos({
+        [QUERY.NAME.STORY]: story.data.title,
+        [QUERY.NAME.USER]: story.data.author.username,
+        [QUERY.POPULATE]: [VIDEO.COMMENTS],
+      });
 
       Promise.all([
         commentsPop,
-        // videosPop
+        videosPop
       ]).then((pops) => {
         fullData.data.comments = pops[0].data.comments;
-        // fullData.videosPop = pops[1];
+        fullData.data.video_contributions = pops[1].data.videos;
         this.setState(fullData);
       });
     });
@@ -61,10 +61,9 @@ export default class StoryDisplay extends Component {
   };
 
   commentUpdateHandler = (newComment) => {
-    console.log("new comment",newComment)
-    let currentData = {...this.state.data};
-    currentData.comments.push(newComment);
-    this.setState({ data: currentData });
+    let currentState = {...this.state};
+    currentState.data.comments.push(newComment.data);
+    this.setState( currentState );
   };
 
   videoHandler = () => {

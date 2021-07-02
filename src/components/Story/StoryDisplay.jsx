@@ -95,7 +95,7 @@ export default class StoryDisplay extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.props);
 
     if (this.state.status) {
       const { text, title, genre, createdAt, upvotes } = this.state.data;
@@ -151,7 +151,7 @@ export default class StoryDisplay extends Component {
                 {this.props.user &&
                 this.props.user._id === this.state.data.author._id ? (
                   <>
-                    <Link to={PATHS.EDITSTORY} story={this.state.data} className="btn edit-btn">Edit</Link>
+                    <Link to={{pathname: `${this.props.id}/edit`, story: this.state.data}} className="btn edit-btn">Edit</Link>
                     <button type="button" className="btn delete-btn">
                       Delete
                     </button>
@@ -168,6 +168,7 @@ export default class StoryDisplay extends Component {
             style={{ display: "none" }}
           >
             <Comments
+              history={this.props.history}
               storyId={this.state.data._id}
               user={this.props.user}
               updateComments={this.commentUpdateHandler}
@@ -179,7 +180,7 @@ export default class StoryDisplay extends Component {
 
           {this.state.data.comments.map((eachComment, index) => (
             <div className="comment-display">
-              Comments go here
+              {/* Comments go here */}
               <CommentDisplay
                 eachComment={eachComment}
                 key={eachComment._id}

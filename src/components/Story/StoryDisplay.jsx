@@ -96,10 +96,10 @@ export default class StoryDisplay extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    // console.log(this.state);
 
     if (this.state.status) {
-      const { text, title, genre, createdAt } = this.state.data;
+      const { text, title, genre, createdAt, upvotes } = this.state.data;
       const author = this.state.data.author.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
@@ -124,7 +124,7 @@ export default class StoryDisplay extends Component {
               <p>{text}</p>
             </ShowMoreText>
             <div className="comment-info story-info">
-              <p># of Likes</p>
+              <p>{upvotes?.length} Likes</p>
               <div className="button-div">
                 {this.props.user ? (
                   <>

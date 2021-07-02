@@ -6,11 +6,11 @@ import * as videoService from "../../services/Video.js";
 import "./VideoDisplay.css";
 
 export default class VideoDisplay extends Component {
-  state = { 
+  state = {
     muted: true,
     upvotes: 0,
     isLiked: false,
-   };
+  };
 
   componentDidMount = () => {
     // getStory(this.props.id).then((story) => {
@@ -37,7 +37,7 @@ export default class VideoDisplay extends Component {
     videoService.updateVideo(this.props.user.upvotes).then((responseFromDB) => {
       console.log("DB Response: ", responseFromDB);
       // this.props.history.push(`/video/${this.props.eachVideo._id}/update`)
-    })
+    });
   };
 
   autoUnMute = (event) => {
@@ -45,10 +45,10 @@ export default class VideoDisplay extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { createdAt, genre, title, upvotes, url, user } =
       this.props.eachVideo;
-      const created = dateFormat(createdAt, "mmmm dS, yyyy");
+    const created = dateFormat(createdAt, "mmmm dS, yyyy");
     return (
       <div>
         <div className="comment-info">
@@ -68,12 +68,17 @@ export default class VideoDisplay extends Component {
         </div>
         <ReactPlayer url={url} controls width="100%" height="75vh" />
         <div className="comment-info video-info">
-          {!upvotes ? <p>0 Likes</p> : <p># of Likes</p>}
+          {upvotes?.length} Likes
           <b>
             <u>{title}</u>
           </b>
           <div className="button-div">
-            <button type="button" id="like-video" className="btn like-btn" onClick={this.upvoteHandler}>
+            <button
+              type="button"
+              id="like-video"
+              className="btn like-btn"
+              onClick={this.upvoteHandler}
+            >
               Like
             </button>
             <button type="button" className="btn edit-btn">

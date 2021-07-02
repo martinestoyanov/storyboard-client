@@ -1,25 +1,51 @@
 import React, { Component } from "react";
+import * as storyService from "../../../services/Story.js";
 import "./Story.css";
 
 export default class EditStory extends Component {
-  state = {};
+  state = {
+    title: this.props.location.story.title,
+    genre: this.props.location.story.genre,
+    text: this.props.location.story.text,
+  };
+
+  changeHandler = (event) => {
+    const input = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [input]: value,
+    });
+  };
+
+  submitHandler = (event) => {
+    event.preventDefault();
+
+    storyService
+      .updateStory(this.props.location.story._id, this.state)
+      .then((responseFromDB) => {
+        console.log("DB Response: ", responseFromDB);
+        this.props.history.push(`/story/${responseFromDB.data._id}`);
+      });
+  };
 
   render() {
     // console.log(this.props);
+    const { title, text, genre } = this.state;
     return (
       <div>
         <form onSubmit={this.submitHandler} className="story-form">
           <input
             type="text"
             name="title"
-            placeholder="Title"
-            value={this.state.title}
+            // placeholder={title}
+            value={title}
             onChange={this.changeHandler}
             className="story-form-title"
           />
           <select
             name="genre"
-            value={this.state.value}
+            // placeholder={genre}
+            value={genre}
             onChange={this.changeHandler}
           >
             <option value="Action/Adventure">Action/Adventure</option>
@@ -35,8 +61,8 @@ export default class EditStory extends Component {
           <textarea
             name="text"
             id="text"
-            placeholder="Start your story here."
-            value={this.state.text}
+            // placeholder={text}
+            value={text}
             onChange={this.changeHandler}
             // rows="26"
           ></textarea>

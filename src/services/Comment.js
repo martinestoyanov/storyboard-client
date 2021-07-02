@@ -20,7 +20,7 @@ function internalServerError(err) {
   };
 }
 function successStatus(res) {
-  console.log("comment services", res)
+  // console.log("comment services", res)
   return {
     status: true,
     data: res.data,

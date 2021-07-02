@@ -49,7 +49,7 @@ export default class CommentDisplay extends Component {
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
-    // console.log(this.props.eachComment);
+    console.log(this.props);
     return (
       <>
       <div className="comments" id="comment-display">
@@ -84,7 +84,7 @@ export default class CommentDisplay extends Component {
             ) : (
               <div></div>
             )}
-            {this.props.user && this.props.user._id === author ? (
+            {this.props.user && this.props.user._id === author._id ? (
               <>
                 <button type="button" className="btn edit-btn" onClick={this.editCommentHandler}>
                   Edit

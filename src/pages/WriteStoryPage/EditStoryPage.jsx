@@ -3,13 +3,9 @@ import EditStory from "../../components/Forms/Story/EditStory";
 import "./WriteStoryPage.css";
 
 export default class EditStoryPage extends Component {
-  id = () => {
-    
-  }
 
   render() {
-    console.log(this.props.match.params.id);
-    // let id = 
+    // console.log(this.props.location.story._id);
     return (
       <div>
         <h2>Edit Your Story</h2>

@@ -4,6 +4,7 @@ import "./WriteStoryPage.css";
 
 export default class EditStoryPage extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <h2>Edit Your Story</h2>

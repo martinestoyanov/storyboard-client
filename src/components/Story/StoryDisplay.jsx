@@ -12,9 +12,14 @@ import Comments from "../Forms/Comments/Comments";
 import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 import { QUERY, STORY, COMMENT, VIDEO } from "../../utils/queryConsts";
+import { Link } from "react-router-dom";
+import * as PATHS from "../../utils/paths.js"
 
 export default class StoryDisplay extends Component {
-  state = {};
+  state = {
+    upvotes: 0,
+    isLiked: false,
+  };
 
   componentDidMount = () => {
     if (!this.props.queried) {
@@ -68,15 +73,28 @@ export default class StoryDisplay extends Component {
   };
 
   upvoteHandler = () => {
-    // this.setState({ upvotes: (this.state.data.upvotes += 1) });
-    // Need to push to db
+    let likeBtn = document.getElementById("like-story");
+    if (this.state.isLiked === false) {
+      likeBtn.style.backgroundColor = "#651a1a";
+      this.setState({
+        upvotes: this.state.upvotes + 1,
+        isLiked: true,
+      });
+    } else if (this.state.isLiked === true) {
+      likeBtn.style.backgroundColor = "#290a0a";
+      this.setState({
+        upvotes: this.state.upvotes - 1,
+        isLiked: false,
+      });
+    }
+    // Needs to push to proper location. Story does not track upvotes.
+    // this.props.user.push(this.state.upvotes);
   };
 
   render() {
-    // console.log(this.state.data);
+    // console.log(this.props);
 
     if (this.state.status) {
-      // console.log(this.state.data);
       const { text, title, genre, createdAt } = this.state.data;
       const author = this.state.data.author.username;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
@@ -120,25 +138,23 @@ export default class StoryDisplay extends Component {
                     >
                       Add Movie
                     </button>
-                    <button type="button" className="btn like-btn">
+                    <button type="button" id="like-story" className="btn like-btn" onClick={this.upvoteHandler}>
                       Like
                     </button>
                   </>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
                 {this.props.user &&
                 this.props.user._id === this.state.data.author._id ? (
                   <>
-                    <button type="button" className="btn edit-btn">
-                      Edit
-                    </button>
+                    <Link to={PATHS.EDITSTORY} story={this.state.data} className="btn edit-btn">Edit</Link>
                     <button type="button" className="btn delete-btn">
                       Delete
                     </button>
                   </>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
               </div>
             </div>
@@ -176,6 +192,6 @@ export default class StoryDisplay extends Component {
           ))}
         </div>
       );
-    } else return <div></div>;
+    } else return <></>;
   }
 }

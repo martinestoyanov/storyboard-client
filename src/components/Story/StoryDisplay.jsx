@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getStory } from "../../services/Story";
 import { getComments } from "../../services/Comment";
-import { getVideo } from "../../services/Video";
+// import { getVideo } from "../../services/Video";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import VideoDisplay from "../Video/VideoDisplay";
@@ -61,10 +61,9 @@ export default class StoryDisplay extends Component {
   };
 
   commentUpdateHandler = (newComment) => {
-    console.log("new comment",newComment)
-    let currentData = {...this.state.data};
-    currentData.comments.push(newComment);
-    this.setState({ data: currentData });
+    let currentState = {...this.state};
+    currentState.data.comments.push(newComment.data);
+    this.setState( currentState );
   };
 
   videoHandler = () => {

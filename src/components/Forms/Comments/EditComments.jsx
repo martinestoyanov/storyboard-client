@@ -4,10 +4,14 @@ import "./Comments.css";
 
 export default class EditComments extends Component {
   state = {
-    id: this.props.eachComment._id,
-    author: this.props.eachComment.author._id,
-    text: this.props.eachComment.text,
+    id: {}, //this.props.eachComment._id,
+    author: {}, //this.props.eachComment.author._id,
+    text: {}, //this.props.eachComment.text,
   };
+
+  componentDidMount() {
+    console.log(this.props.eachComment);
+  }
 
   changeHandler = (event) => {
     const input = event.target.name;
@@ -20,12 +24,14 @@ export default class EditComments extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     //   more code goes here
-    commentService.updateComment(this.state.id, this.state).then((responseFromDB) => {
-      console.log("DB Response: ", responseFromDB);
-      this.props.updateComments(responseFromDB);
-      this.props.visibilityHandler();
-      // this.props.history.push(`/story/${responseFromDB.data._id}`);
-    })
+    commentService
+      .updateComment(this.state.id, this.state)
+      .then((responseFromDB) => {
+        console.log("DB Response: ", responseFromDB);
+        this.props.updateComments(responseFromDB);
+        this.props.visibilityHandler();
+        // this.props.history.push(`/story/${responseFromDB.data._id}`);
+      });
   };
 
   render() {

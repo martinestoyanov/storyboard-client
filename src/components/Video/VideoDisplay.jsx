@@ -8,14 +8,16 @@ import "./VideoDisplay.css";
 export default class VideoDisplay extends Component {
   state = {
     muted: true,
-    upvotes: 0,
     isLiked: false,
+    video: {},
+    user: {},
   };
 
   componentDidMount = () => {
-    // getStory(this.props.id).then((story) => {
-    //   this.setState(story);
-    // });
+    this.setState({
+      video: this.props.eachVideo,
+      user: this.props.eachVideo.user,
+    });
   };
 
   deleteHandler = () => {
@@ -23,26 +25,19 @@ export default class VideoDisplay extends Component {
   }
 
   upvoteHandler = () => {
-    let likeBtn = document.getElementById("like-video");
-    if (this.state.isLiked === false) {
-      likeBtn.style.backgroundColor = "#651a1a";
-      this.setState({
-        upvotes: this.state.upvotes + 1,
-        isLiked: true,
-      });
-    } else if (this.state.isLiked === true) {
-      likeBtn.style.backgroundColor = "#290a0a";
-      this.setState({
-        upvotes: this.state.upvotes - 1,
-        isLiked: false,
-      });
-    }
     // Needs to push to proper location.
+    console.log(this.props.eachVideo);
     videoService
       .updateVideo(this.props.eachVideo._id, { upvotes: this.props.user._id })
-      .then((responseFromDB) => {
+      .then((response) => {
+        let likeBtn = document.getElementById("like-video");
+        if (this.state.isLiked === false) {
+          likeBtn.style.backgroundColor = "#651a1a";
+        } else if (this.state.isLiked === true) {
+          likeBtn.style.backgroundColor = "#290a0a";
+        }
+        this.setState({ video: response.data });
         // console.log("DB Response: ", responseFromDB);
-        this.props.eachVideo.upvotes = responseFromDB.data.upvotes;
         // this.props.history.push(`/video/${responseFromDB.data.upvotes}/update`)
       });
   };
@@ -52,18 +47,20 @@ export default class VideoDisplay extends Component {
   };
 
   render() {
-    console.log(this.props);
-    const { createdAt, genre, title, upvotes, url, user } =
-      this.props.eachVideo;
+    // console.log(this.props);
+    const { createdAt, genre, title, upvotes, url } = this.state.video;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
     return (
       <div>
         <div className="comment-info">
           {/* video author not currently being queried/passed */}
           <div className="user-info">
-            <img src={user.pictureURL || ProfilePic} alt="Profile Pic" />
+            <img
+              src={this.state.user.pictureURL || ProfilePic}
+              alt="Profile Pic"
+            />
             <b>
-              <p className="username">{user.username}</p>
+              <p className="username">{this.state.user.username}</p>
             </b>
           </div>
           <b>
@@ -94,8 +91,7 @@ export default class VideoDisplay extends Component {
             ) : (
               <div></div>
             )}
-            {this.props.user &&
-            this.props.user._id === this.props.eachVideo.user._id ? (
+            {this.props.user && this.props.user._id === this.state.user._id ? (
               <>
                 <button type="button" className="btn edit-btn" onClick={this.deleteHandler}>
                   Delete

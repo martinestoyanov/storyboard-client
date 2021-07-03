@@ -46,6 +46,20 @@ h3 {
 
 .user-content {
     margin-top: 5vh;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.story-preview,
+.video-display {
+    display: flex;
+    flex-flow: column;
+}
+
+.story-preview {
+    margin-right: 1vw;
 }
 
 .edit-profile-form {

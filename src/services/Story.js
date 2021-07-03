@@ -28,6 +28,13 @@ const storyService = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/story`,
 });
 
+export function topContent(info) {
+  return storyService
+    .post(`/top-content`)
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
 export function createStory(info) {
   return storyService
     .post(`/create`, info, {

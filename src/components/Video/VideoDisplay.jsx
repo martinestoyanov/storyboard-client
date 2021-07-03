@@ -34,11 +34,13 @@ export default class VideoDisplay extends Component {
       });
     }
     // Needs to push to proper location.
-    videoService.updateVideo(this.props.eachVideo._id, {upvotes: this.props.user._id}).then((responseFromDB) => {
-      // console.log("DB Response: ", responseFromDB);
+    videoService
+      .updateVideo(this.props.eachVideo._id, { upvotes: this.props.user._id })
+      .then((responseFromDB) => {
+        // console.log("DB Response: ", responseFromDB);
         this.props.eachVideo.upvotes = responseFromDB.data.upvotes;
-      // this.props.history.push(`/video/${responseFromDB.data.upvotes}/update`)
-    });
+        // this.props.history.push(`/video/${responseFromDB.data.upvotes}/update`)
+      });
   };
 
   autoUnMute = (event) => {
@@ -46,7 +48,7 @@ export default class VideoDisplay extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { createdAt, genre, title, upvotes, url, user } =
       this.props.eachVideo;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
@@ -74,20 +76,30 @@ export default class VideoDisplay extends Component {
             <u>{title}</u>
           </b>
           <div className="button-div">
-            <button
-              type="button"
-              id="like-video"
-              className="btn like-btn"
-              onClick={this.upvoteHandler}
-            >
-              Like
-            </button>
-            <button type="button" className="btn edit-btn">
-              Edit
-            </button>
-            <button type="button" className="btn edit-btn">
-              Delete
-            </button>
+            {this.props.user ? (
+              <>
+                <button
+                  type="button"
+                  id="like-video"
+                  className="btn like-btn"
+                  onClick={this.upvoteHandler}
+                >
+                  Like
+                </button>
+              </>
+            ) : (
+              <div></div>
+            )}
+            {this.props.user &&
+            this.props.user._id === this.props.eachVideo.user._id ? (
+              <>
+                <button type="button" className="btn edit-btn">
+                  Delete
+                </button>
+              </>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
       </div>

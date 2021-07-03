@@ -108,7 +108,7 @@ export default class StoryDisplay extends Component {
 
     if (this.state.status) {
       const { text, title, genre, createdAt, upvotes } = this.state.data;
-      const author = this.state.data.author.username;
+      const { username: author, pictureURL } = this.state.data.author;
       const created = dateFormat(createdAt, "mmmm dS, yyyy");
       return (
         <div className="display-div">
@@ -116,7 +116,7 @@ export default class StoryDisplay extends Component {
             <h3 className="story-title">{title}</h3>
             <div className="story-details">
               <div className="user-details">
-                <img src={author.pictureURL || ProfilePic} alt="Profile pic" />
+                <img src={pictureURL || ProfilePic} alt="Profile pic" />
                 <b>
                   <p className="story-user">{author}</p>
                 </b>

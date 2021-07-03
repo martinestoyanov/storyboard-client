@@ -49,6 +49,18 @@ export default class CommentDisplay extends Component {
     }
   };
 
+  deleteHandler = (event) => {
+    event.preventDefault();
+    commentService
+      .deleteComment(this.props.eachComment._id)
+      .then((responseFromDB) => {
+        console.log("DB Response: ", responseFromDB);
+        // this.setState({
+        //   comments: responseFromDB,
+        // });
+      });
+  };
+
   render() {
     const { createdAt, text, upvotes } = this.state.comment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
@@ -100,7 +112,11 @@ export default class CommentDisplay extends Component {
                   >
                     Edit
                   </button>
-                  <button type="button" className="btn edit-btn">
+                  <button
+                    type="button"
+                    className="btn edit-btn"
+                    onClick={this.deleteHandler}
+                  >
                     Delete
                   </button>
                 </>

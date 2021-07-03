@@ -73,20 +73,30 @@ export default class VideoDisplay extends Component {
             <u>{title}</u>
           </b>
           <div className="button-div">
-            <button
-              type="button"
-              id="like-video"
-              className="btn like-btn"
-              onClick={this.upvoteHandler}
-            >
-              Like
-            </button>
-            <button type="button" className="btn edit-btn">
-              Edit
-            </button>
-            <button type="button" className="btn edit-btn">
-              Delete
-            </button>
+            {this.props.user ? (
+              <>
+                <button
+                  type="button"
+                  id="like-video"
+                  className="btn like-btn"
+                  onClick={this.upvoteHandler}
+                >
+                  Like
+                </button>
+              </>
+            ) : (
+              <div></div>
+            )}
+            {this.props.user &&
+            this.props.user._id === this.props.eachVideo.user._id ? (
+              <>
+                <button type="button" className="btn edit-btn">
+                  Delete
+                </button>
+              </>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
       </div>

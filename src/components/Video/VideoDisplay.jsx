@@ -35,7 +35,7 @@ export default class VideoDisplay extends Component {
     }
     // Needs to push to proper location.
     videoService.updateVideo(this.props.eachVideo._id, {upvotes: this.props.user._id}).then((responseFromDB) => {
-      console.log("DB Response: ", responseFromDB);
+      // console.log("DB Response: ", responseFromDB);
         this.props.eachVideo.upvotes = responseFromDB.data.upvotes;
       // this.props.history.push(`/video/${responseFromDB.data.upvotes}/update`)
     });

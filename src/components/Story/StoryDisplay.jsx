@@ -13,7 +13,7 @@ import ProfilePic from "../../images/profile-silhouette.png";
 import "./StoryDisplay.css";
 import { QUERY, STORY, COMMENT, VIDEO } from "../../utils/queryConsts";
 import { Link } from "react-router-dom";
-import * as PATHS from "../../utils/paths.js"
+// import * as PATHS from "../../utils/paths.js";
 
 export default class StoryDisplay extends Component {
   state = {
@@ -40,10 +40,7 @@ export default class StoryDisplay extends Component {
         [QUERY.POPULATE]: [VIDEO.COMMENTS],
       });
 
-      Promise.all([
-        commentsPop,
-        videosPop
-      ]).then((pops) => {
+      Promise.all([commentsPop, videosPop]).then((pops) => {
         fullData.data.comments = pops[0].data.comments;
         fullData.data.video_contributions = pops[1].data.videos;
         this.setState(fullData);
@@ -61,9 +58,21 @@ export default class StoryDisplay extends Component {
   };
 
   commentUpdateHandler = (newComment) => {
-    let currentState = {...this.state};
-    currentState.data.comments.push(newComment.data);
-    this.setState( currentState );
+    let currentState = { ...this.state };
+    // console.log("newComment", newComment, "currentState", currentState);
+    const updatingIndex = currentState.data.comments.findIndex((e) => {
+      return e._id === newComment.data._id;
+    });
+    // console.log(updatingIndex);
+    if (updatingIndex === -1) {
+      currentState.data.comments.push(newComment.data);
+      this.setState(currentState);
+    } else {
+      // console.log("updating");
+      currentState.data.comments[updatingIndex] = newComment.data;
+      // console.log("updated comment",currentState.data.comments[updatingIndex]);
+      this.setState(currentState);
+    }
   };
 
   videoHandler = () => {
@@ -95,7 +104,7 @@ export default class StoryDisplay extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     if (this.state.status) {
       const { text, title, genre, createdAt, upvotes } = this.state.data;
@@ -141,7 +150,12 @@ export default class StoryDisplay extends Component {
                     >
                       Add Movie
                     </button>
-                    <button type="button" id="like-story" className="btn like-btn" onClick={this.upvoteHandler}>
+                    <button
+                      type="button"
+                      id="like-story"
+                      className="btn like-btn"
+                      onClick={this.upvoteHandler}
+                    >
                       Like
                     </button>
                   </>
@@ -151,7 +165,15 @@ export default class StoryDisplay extends Component {
                 {this.props.user &&
                 this.props.user._id === this.state.data.author._id ? (
                   <>
-                    <Link to={{pathname: `${this.props.id}/edit`, story: this.state.data}} className="btn edit-btn">Edit</Link>
+                    <Link
+                      to={{
+                        pathname: `${this.props.id}/edit`,
+                        story: this.state.data,
+                      }}
+                      className="btn edit-btn"
+                    >
+                      Edit
+                    </Link>
                     <button type="button" className="btn delete-btn">
                       Delete
                     </button>
@@ -185,6 +207,7 @@ export default class StoryDisplay extends Component {
                 eachComment={eachComment}
                 key={eachComment._id}
                 {...this.props}
+                updateComments={this.commentUpdateHandler}
               />
             </div>
           ))}

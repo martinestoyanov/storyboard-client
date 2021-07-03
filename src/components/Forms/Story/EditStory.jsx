@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as storyService from "../../../services/Story.js";
-import { QUERY, STORY, COMMENT, VIDEO } from "../../../utils/queryConsts.js";
+import { QUERY, STORY } from "../../../utils/queryConsts.js";
 import "./Story.css";
 
 export default class EditStory extends Component {

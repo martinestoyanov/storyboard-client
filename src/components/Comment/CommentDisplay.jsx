@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProfilePic from "../../images/profile-silhouette.png";
-import EditComments from "../Forms/Comments/EditComments"
+import EditComments from "../Forms/Comments/EditComments";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
 import "./CommentDisplay.css";
@@ -44,7 +44,7 @@ export default class CommentDisplay extends Component {
       editCommentDisplay.style.display = "none";
       commentDisplay.style.display = "block";
     }
-  }
+  };
 
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
@@ -52,56 +52,68 @@ export default class CommentDisplay extends Component {
     // console.log(this.props);
     return (
       <>
-      <div className="comments" id="comment-display">
-        <div className="comment-info">
-          <div className="user-info">
-            <img src={author.profileURL||ProfilePic} alt="Profile Pic" />
+        <div className="comments" id="comment-display">
+          <div className="comment-info">
+            <div className="user-info">
+              <img src={author.profileURL || ProfilePic} alt="Profile Pic" />
+              <b>
+                <p className="username">{author.username}</p>
+              </b>
+            </div>
             <b>
-              <p className="username">{author.username}</p>
+              <p className="date">{created}</p>
             </b>
           </div>
-          <b>
-            <p className="date">{created}</p>
-          </b>
-        </div>
-        <ShowMoreText className="text" lines={2}>
-          <p className="text">{text}</p>
-        </ShowMoreText>
-        <div className="comment-info">
-          <p>{upvotes?.length} Likes</p>
-          <div className="button-div">
-            {this.props.user ? (
-              <>
-                <button
-                  type="button"
-                  id="like-comment"
-                  className="btn like-btn"
-                  onClick={this.upvoteHandler}
-                >
-                  Like
-                </button>
-              </>
-            ) : (
-              <div></div>
-            )}
-            {this.props.user && this.props.user._id === author._id ? (
-              <>
-                <button type="button" className="btn edit-btn" onClick={this.editCommentHandler}>
-                  Edit
-                </button>
-                <button type="button" className="btn edit-btn">
-                  Delete
-                </button>
-              </>
-            ) : (
-              <div></div>
-            )}
+          <ShowMoreText className="text" lines={2}>
+            <p className="text">{text}</p>
+          </ShowMoreText>
+          <div className="comment-info">
+            <p>{upvotes?.length} Likes</p>
+            <div className="button-div">
+              {this.props.user ? (
+                <>
+                  <button
+                    type="button"
+                    id="like-comment"
+                    className="btn like-btn"
+                    onClick={this.upvoteHandler}
+                  >
+                    Like
+                  </button>
+                </>
+              ) : (
+                <div></div>
+              )}
+              {this.props.user && this.props.user._id === author._id ? (
+                <>
+                  <button
+                    type="button"
+                    className="btn edit-btn"
+                    onClick={this.editCommentHandler}
+                  >
+                    Edit
+                  </button>
+                  <button type="button" className="btn edit-btn">
+                    Delete
+                  </button>
+                </>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="edit-comments" id="edit-comment-display" style={{display:"none"}}>
-        <EditComments {...this.props} />
-      </div>
+        <div
+          className="edit-comments"
+          id="edit-comment-display"
+          style={{ display: "none" }}
+        >
+          <EditComments
+            updateComments={this.props.updateHandler}
+            visibilityHandler={this.editCommentHandler}
+            {...this.props}
+          />
+        </div>
       </>
     );
   }

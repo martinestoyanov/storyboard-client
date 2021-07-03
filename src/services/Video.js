@@ -49,6 +49,7 @@ export function getVideos(params) {
       [QUERY.RANDOM]: random,
       [QUERY.POPULATE]: populate,
       [QUERY.NAME.USER]: user,
+      [QUERY.NAME.STORY]: story,
       [QUERY.SEARCH]: search,
       [QUERY.GENRE]: genre,
     } = params;
@@ -80,6 +81,11 @@ export function getVideos(params) {
       qParams += `${QUERY.GENRE}=${genre}`;
       priorParams = true;
     }
+    if (story) {
+      if (priorParams) qParams += "&";
+      qParams += `${QUERY.NAME.STORY}=${story}`;
+      priorParams = true;
+    }
   }
   return videoService
     .get(`/index${qParams}`, {
@@ -107,9 +113,9 @@ export function getVideo(id, params) {
     .catch(internalServerError);
 }
 
-export function updateVideo(id) {
+export function updateVideo(id, info) {
   return videoService
-    .post(`/${id}/update`, {
+    .post(`/${id}/update`, info, {
       headers: {
         Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },
@@ -118,11 +124,11 @@ export function updateVideo(id) {
     .catch(internalServerError);
 }
 
-export function deleteVideo(id) {
+export function deleteVideo(id, _) {
   return videoService
-    .post(`/${id}/delete`, {
+    .post(`/${id}/delete`, _, {
       headers: {
-        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+        authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },
     })
     .then(successStatus)

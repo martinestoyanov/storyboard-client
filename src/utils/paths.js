@@ -11,6 +11,7 @@ export const RANDOM = "/random";
 export const PROFILEPAGE = `${PROTECTEDPAGE}/profile`;
 export const EDITPROFILE = `${PROTECTEDPAGE}/profile/edit`;
 export const SINGLESTORY = "/story/:id";
+export const EDITSTORY = `${SINGLESTORY}/edit`;
 
 export const GENRE = `/genre/:genrename`;
 export const ACTIONADVENTURE = "/genre/action-adventure";

@@ -25,7 +25,7 @@ export default class Story extends Component {
     event.preventDefault();
 
     storyService.createStory(this.state).then((responseFromDB) => {
-      console.log(responseFromDB);
+      // console.log(responseFromDB);
       this.props.history.push(`/story/${responseFromDB.data.newStory._id}`);
     });
   };

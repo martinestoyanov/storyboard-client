@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./ProfilePage.css";
 import { updateUser } from "../../services/User";
+import { avatarUpload } from "../../services/image-upload";
+import cleanDeep from "clean-deep";
 
 export default class EditProfile extends Component {
   state = {
@@ -8,6 +10,7 @@ export default class EditProfile extends Component {
     email: "",
     pictureURL: "",
     password: "",
+    fileRef: React.createRef(),
   };
 
   componentDidMount() {}
@@ -19,14 +22,39 @@ export default class EditProfile extends Component {
     });
   };
 
+  handleFileUpload = (event) => {
+    avatarUpload(this.state.fileRef.current.files[0])
+      .then((response) => {
+        this.setState({ pictureURL: response.data.secure_url });
+      })
+      .catch((error) => {
+        console.log("error uploding the file: ", error);
+      });
+  };
+
   submitHandler = (event) => {
     event.preventDefault();
-    updateUser(this.props.user._id, this.state).then((res) => {
-      alert(
-        ` Information updated. You will be logged out. Please log in again using your new information.`
-      );
-      this.props.handleLogout();
-    });
+    const sanitizedState = cleanDeep(this.state);
+    if (this.state.fileRef.current.files) {
+      avatarUpload(this.state.fileRef.current.files[0]).then((response) => {
+        const url = response.data.secure_url;
+        delete sanitizedState.fileRef;
+        sanitizedState.pictureURL = url;
+        updateUser(this.props.user._id, sanitizedState).then((res) => {
+          alert(
+            ` Information updated. You will be logged out. Please log in again using your new information.`
+          );
+          this.props.handleLogout();
+        });
+      });
+    } else {
+      updateUser(this.props.user._id, sanitizedState).then((res) => {
+        alert(
+          ` Information updated. You will be logged out. Please log in again using your new information.`
+        );
+        this.props.handleLogout();
+      });
+    }
   };
 
   render() {
@@ -35,10 +63,7 @@ export default class EditProfile extends Component {
       <div>
         <h2>Edit Profile Page</h2>
         <div className="edit-profile-pic">
-          <img
-            src="https://cdn3.vectorstock.com/i/1000x1000/97/32/man-silhouette-profile-picture-vector-2139732.jpg"
-            alt="Profile pic"
-          />
+          <img src={pic} alt="Profile pic" />
         </div>
         <form className="edit-profile-form" onSubmit={this.submitHandler}>
           <div className="form-input">
@@ -63,13 +88,7 @@ export default class EditProfile extends Component {
           </div>
           <div className="form-input">
             <label htmlFor="pictureURL">Profile Pic</label>
-            <input
-              type="text"
-              name="pictureURL"
-              placeholder={pic}
-              value={this.state.pictureURL}
-              onChange={this.changeHandler}
-            />
+            <input type="file" ref={this.state.fileRef} />
           </div>
 
           <div className="form-input">

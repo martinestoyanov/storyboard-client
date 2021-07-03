@@ -4,9 +4,11 @@ import "./Video.css";
 
 export default class Video extends Component {
   state = {
+    user: this.props.user._id,
     url: "",
     genre: "",
     title: "",
+    story: this.props.story._id,
   };
 
   changeHandler = (event) => {
@@ -21,11 +23,9 @@ export default class Video extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    // "service" is not correct/"createVideo" has not be created yet
     videoService.createVideo(this.state).then((responseFromDB) => {
       console.log(responseFromDB);
-      //   "/storytellers" has not been created yet
-      this.props.push("/storytellers");
+      this.props.videoUploadHandler(responseFromDB);
     });
   };
 
@@ -44,7 +44,7 @@ export default class Video extends Component {
             <select
               name="genre"
               value={this.state.value}
-              onChange={this.selectionHandler}
+              onChange={this.changeHandler}
             >
               <option value="Action/Adventure">Action/Adventure</option>
               <option value="Comedy">Comedy</option>
@@ -65,7 +65,9 @@ export default class Video extends Component {
             />
           </div>
           <div className="video-btn-div">
-            <button type="submit" className="btn">Post Your Movie!</button>
+            <button type="submit" className="btn">
+              Post Your Movie!
+            </button>
           </div>
         </form>
       </div>

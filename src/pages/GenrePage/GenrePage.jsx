@@ -81,7 +81,7 @@ export default class GenrePage extends Component {
                   <h3 className="preview-title">{eachStory.title}</h3>
                   <div className="preview-details">
                     <div className="preview-user-details">
-                      <img src={ProfilePic} alt="Profile pic." />
+                      <img src={eachStory.author.pictureURL || ProfilePic} alt="Profile pic." />
                       <b>
                         <p className="preview-user">
                           {eachStory.author.username}

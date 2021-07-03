@@ -87,8 +87,7 @@ export default class VideoDisplay extends Component {
             ) : (
               <div></div>
             )}
-            {this.props.user &&
-            this.props.user._id === this.props.eachVideo.user._id ? (
+            {this.props.user && this.props.user._id === this.state.user._id ? (
               <>
                 <button type="button" className="btn edit-btn">
                   Delete

@@ -96,7 +96,7 @@ export default class StoryDisplay extends Component {
         likeBtn.style.backgroundColor = "#290a0a";
       }
       console.log(response.data);
-      this.setState(response);
+      this.setState({ data: response.data });
     });
     // Needs to push to proper location. Story does not track upvotes.
     // this.props.user.push(this.state.upvotes);

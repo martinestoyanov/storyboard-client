@@ -3,12 +3,14 @@ import ProfilePic from "../../images/profile-silhouette.png";
 import EditComments from "../Forms/Comments/EditComments";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
+import * as commentService from "../../services/Comment.js";
 import "./CommentDisplay.css";
 
 export default class CommentDisplay extends Component {
   state = {
     upvotes: 0,
     isLiked: false,
+    comments: this.props.eachComment,
   };
 
   // componentDidMount() {
@@ -46,10 +48,22 @@ export default class CommentDisplay extends Component {
     }
   };
 
+  deleteHandler = (event) => {
+    event.preventDefault();
+    commentService
+      .deleteComment(this.props.eachComment._id)
+      .then((responseFromDB) => {
+        console.log("DB Response: ", responseFromDB);
+        // this.setState({
+        //   comments: responseFromDB,
+        // });
+      });
+  };
+
   render() {
     const { author, createdAt, text, upvotes } = this.props.eachComment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
-    // console.log(this.props);
+    console.log(this.state);
     return (
       <>
         <div className="comments" id="comment-display">
@@ -93,7 +107,11 @@ export default class CommentDisplay extends Component {
                   >
                     Edit
                   </button>
-                  <button type="button" className="btn edit-btn">
+                  <button
+                    type="button"
+                    className="btn edit-btn"
+                    onClick={this.deleteHandler}
+                  >
                     Delete
                   </button>
                 </>

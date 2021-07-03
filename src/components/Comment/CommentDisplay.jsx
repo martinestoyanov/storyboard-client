@@ -3,33 +3,36 @@ import ProfilePic from "../../images/profile-silhouette.png";
 import EditComments from "../Forms/Comments/EditComments";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
+import { updateComment } from "../../services/Comment";
 import "./CommentDisplay.css";
 
 export default class CommentDisplay extends Component {
   state = {
-    upvotes: 0,
     isLiked: false,
+    comment: {},
+    author: {},
   };
 
-  // componentDidMount() {
-  //   this.setState(this.props);
-  // }
+  componentDidMount() {
+    this.setState({
+      comment: this.props.eachComment,
+      author: this.props.eachComment.author,
+    });
+  }
 
   upvoteHandler = () => {
-    let likeBtn = document.getElementById("like-comment");
-    if (this.state.isLiked === false) {
-      likeBtn.style.backgroundColor = "#651a1a";
-      this.setState({
-        upvotes: this.state.upvotes + 1,
-        isLiked: true,
-      });
-    } else if (this.state.isLiked === true) {
-      likeBtn.style.backgroundColor = "#290a0a";
-      this.setState({
-        upvotes: this.state.upvotes - 1,
-        isLiked: false,
-      });
-    }
+    updateComment(this.props.eachComment._id, {
+      upvotes: this.props.user._id,
+    }).then((response) => {
+      let likeBtn = document.getElementById("like-comment");
+      if (this.state.isLiked === false) {
+        likeBtn.style.backgroundColor = "#651a1a";
+      } else if (this.state.isLiked === true) {
+        likeBtn.style.backgroundColor = "#290a0a";
+      }
+      console.log(response.data);
+      this.setState({ comment: response.data });
+    });
     // Needs to push to proper location. eachComment does not track upvotes.
     // this.props.user.push(this.state.upvotes);
   };
@@ -47,17 +50,20 @@ export default class CommentDisplay extends Component {
   };
 
   render() {
-    const { author, createdAt, text, upvotes } = this.props.eachComment;
+    const { createdAt, text, upvotes } = this.state.comment;
     const created = dateFormat(createdAt, "mmmm dS, yyyy");
-    // console.log(this.props);
+    // console.log(this.props.eachComment);
     return (
       <>
         <div className="comments" id="comment-display">
           <div className="comment-info">
             <div className="user-info">
-              <img src={author.pictureURL || ProfilePic} alt="Profile Pic" />
+              <img
+                src={this.state.author.pictureURL || ProfilePic}
+                alt="Profile Pic"
+              />
               <b>
-                <p className="username">{author.username}</p>
+                <p className="username">{this.state.author.username}</p>
               </b>
             </div>
             <b>
@@ -84,7 +90,8 @@ export default class CommentDisplay extends Component {
               ) : (
                 <div></div>
               )}
-              {this.props.user && this.props.user._id === author._id ? (
+              {this.props.user &&
+              this.props.user._id === this.state.author._id ? (
                 <>
                   <button
                     type="button"

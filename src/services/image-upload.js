@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as CONSTS from "../utils/consts";
 
 // here we are just maing our code look more DRY. With every backend call we must deal with errors and success states. The idea of creating these kinds of services is to make our lives easier in the components
 function internalServerError(err) {
@@ -8,11 +9,11 @@ function internalServerError(err) {
       status: false,
       errorMessage: err.response.data.errorMessage,
     };
-  }
-  return {
-    status: false,
-    errorMessage: "Internal server error. Please check your server",
-  };
+  } else
+    return {
+      status: false,
+      errorMessage: "Internal server error. Please check your server",
+    };
 }
 
 function successStatus(res) {
@@ -30,7 +31,11 @@ export function avatarUpload(file) {
   const formData = new FormData();
   formData.append("pictureURL", file);
   return imageUploadService
-    .post("/upload", formData)
+    .post("/upload", formData, {
+      headers: {
+        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+      },
+    })
     .then(successStatus)
     .catch(internalServerError);
 }

@@ -14,10 +14,10 @@ import "./StoryDisplay.css";
 import { QUERY, STORY, COMMENT, VIDEO } from "../../utils/queryConsts";
 import { Link } from "react-router-dom";
 // import * as PATHS from "../../utils/paths.js";
+import { updateStory } from "../../services/Story";
 
 export default class StoryDisplay extends Component {
   state = {
-    upvotes: 0,
     isLiked: false,
   };
 
@@ -85,20 +85,19 @@ export default class StoryDisplay extends Component {
   };
 
   upvoteHandler = () => {
-    let likeBtn = document.getElementById("like-story");
-    if (this.state.isLiked === false) {
-      likeBtn.style.backgroundColor = "#651a1a";
-      this.setState({
-        upvotes: this.state.upvotes + 1,
-        isLiked: true,
-      });
-    } else if (this.state.isLiked === true) {
-      likeBtn.style.backgroundColor = "#290a0a";
-      this.setState({
-        upvotes: this.state.upvotes - 1,
-        isLiked: false,
-      });
-    }
+    console.log(this.state);
+    updateStory(this.state.data._id, {
+      upvotes: this.props.user._id,
+    }).then((response) => {
+      let likeBtn = document.getElementById("like-story");
+      if (this.state.isLiked === false) {
+        likeBtn.style.backgroundColor = "#651a1a";
+      } else if (this.state.isLiked === true) {
+        likeBtn.style.backgroundColor = "#290a0a";
+      }
+      console.log(response.data);
+      this.setState(response);
+    });
     // Needs to push to proper location. Story does not track upvotes.
     // this.props.user.push(this.state.upvotes);
   };

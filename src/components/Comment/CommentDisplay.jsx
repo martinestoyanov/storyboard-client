@@ -3,7 +3,7 @@ import ProfilePic from "../../images/profile-silhouette.png";
 import EditComments from "../Forms/Comments/EditComments";
 import ShowMoreText from "react-show-more-text";
 import dateFormat from "dateformat";
-import { updateComment } from "../../services/Comment";
+import { updateComment, deleteComment } from "../../services/Comment";
 import "./CommentDisplay.css";
 
 export default class CommentDisplay extends Component {
@@ -51,14 +51,12 @@ export default class CommentDisplay extends Component {
 
   deleteHandler = (event) => {
     event.preventDefault();
-    commentService
-      .deleteComment(this.props.eachComment._id)
-      .then((responseFromDB) => {
-        console.log("DB Response: ", responseFromDB);
-        // this.setState({
-        //   comments: responseFromDB,
-        // });
-      });
+    deleteComment(this.props.eachComment._id).then((responseFromDB) => {
+      console.log("DB Response: ", responseFromDB);
+      // this.setState({
+      //   comments: responseFromDB,
+      // });
+    });
   };
 
   render() {

@@ -75,6 +75,14 @@ export default class StoryDisplay extends Component {
     }
   };
 
+  videoUploadHandler = (newVideo) => {
+    let currentState = { ...this.state };
+    currentState.data.video_contributions.push(newVideo.data.newVideo);
+    console.log(currentState);
+    this.setState(currentState);
+    this.videoHandler();
+  };
+
   videoHandler = () => {
     let toggle = document.getElementById("video-form");
     if (toggle.style.display === "none") {
@@ -198,7 +206,11 @@ export default class StoryDisplay extends Component {
             />
           </div>
           <div id="video-form" style={{ display: "none" }}>
-            <Video />
+            <Video
+              story={this.state.data}
+              user={this.props.user}
+              videoUploadHandler={this.videoUploadHandler}
+            />
           </div>
 
           {this.state.data.comments.map((eachComment, index) => (

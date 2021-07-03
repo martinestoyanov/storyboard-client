@@ -124,11 +124,11 @@ export function updateVideo(id, info) {
     .catch(internalServerError);
 }
 
-export function deleteVideo(id) {
+export function deleteVideo(id, _) {
   return videoService
-    .post(`/${id}/delete`, {
+    .post(`/${id}/delete`, _, {
       headers: {
-        Authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
+        authorization: localStorage.getItem(CONSTS.ACCESS_TOKEN),
       },
     })
     .then(successStatus)

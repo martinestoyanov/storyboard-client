@@ -18,6 +18,10 @@ export default class VideoDisplay extends Component {
     // });
   };
 
+  deleteHandler = () => {
+    videoService.deleteVideo(this.props.eachVideo._id).then((res)=>{console.log(res)})
+  }
+
   upvoteHandler = () => {
     let likeBtn = document.getElementById("like-video");
     if (this.state.isLiked === false) {
@@ -93,7 +97,7 @@ export default class VideoDisplay extends Component {
             {this.props.user &&
             this.props.user._id === this.props.eachVideo.user._id ? (
               <>
-                <button type="button" className="btn edit-btn">
+                <button type="button" className="btn edit-btn" onClick={this.deleteHandler}>
                   Delete
                 </button>
               </>

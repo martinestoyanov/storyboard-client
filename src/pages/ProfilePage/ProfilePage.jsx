@@ -8,6 +8,7 @@ import { QUERY, USER } from "../../utils/queryConsts";
 import { getStories } from "../../services/Story";
 import ShowMoreText from "react-show-more-text";
 import VideoDisplay from "../../components/Video/VideoDisplay";
+import { getVideos } from "../../services/Video.js";
 
 export default class ProfilePage extends Component {
   state = {};
@@ -18,15 +19,23 @@ export default class ProfilePage extends Component {
       [QUERY.NAME.USER]: this.props.user.username,
       [QUERY.POPULATE]: [USER.STORIES, USER.COMMENTS, USER.VIDEOS],
     });
-    userStories.then((res) => {
-      this.setState({ stories: res.data.stories, status: true });
+    const userVideos = getVideos({
+      [QUERY.NAME.USER]: this.props.user.username,
+      [QUERY.POPULATE]: [USER.STORIES, USER.COMMENTS, USER.VIDEOS],
+    });
+    Promise.all([userStories, userVideos]).then((promises) => {
+      this.setState({
+        stories: promises[0].data.stories,
+        videos: promises[1].data.videos,
+        status: true,
+      });
     });
   };
 
   render() {
     const { username, pictureURL, email, stories, videos, createdAt } =
       this.state;
-    console.log(stories, videos);
+    console.log("videos", videos);
     const memberSince = dateFormat(createdAt, "mmmm dS, yyyy");
     if (
       this.state.status &&

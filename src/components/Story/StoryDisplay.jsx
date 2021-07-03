@@ -116,7 +116,7 @@ export default class StoryDisplay extends Component {
             <h3 className="story-title">{title}</h3>
             <div className="story-details">
               <div className="user-details">
-                <img src={ProfilePic} alt="Profile pic" />
+                <img src={author.pictureURL || ProfilePic} alt="Profile pic" />
                 <b>
                   <p className="story-user">{author}</p>
                 </b>
@@ -194,6 +194,7 @@ export default class StoryDisplay extends Component {
               storyId={this.state.data._id}
               user={this.props.user}
               updateComments={this.commentUpdateHandler}
+              visibilityHandler={this.commentHandler}
             />
           </div>
           <div id="video-form" style={{ display: "none" }}>

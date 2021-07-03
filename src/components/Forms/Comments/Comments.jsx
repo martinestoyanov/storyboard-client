@@ -35,8 +35,10 @@ export default class Comments extends Component {
       }).then((populatedComment) => {
         // console.log("POPULATED COMMENT ",populatedComment);
         this.props.updateComments(populatedComment);
+        this.props.visibilityHandler();
       });
-
+    // let commentForm = document.getElementById("comment-frm");
+    // commentForm.style.display = "none";
       
 
     });
@@ -45,7 +47,8 @@ export default class Comments extends Component {
   render() {
     // console.log(this.props)
     return (
-      <div className="comment-frm">
+      <>
+      <div id="comment-frm" className="comment-frm">
         <form onSubmit={this.submitHandler}>
           <input
             type="text"
@@ -61,6 +64,7 @@ export default class Comments extends Component {
           </div>
         </form>
       </div>
+      </>
     );
   }
 }

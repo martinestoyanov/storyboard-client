@@ -55,7 +55,7 @@ export default class CommentDisplay extends Component {
         <div className="comments" id="comment-display">
           <div className="comment-info">
             <div className="user-info">
-              <img src={author.profileURL || ProfilePic} alt="Profile Pic" />
+              <img src={author.pictureURL || ProfilePic} alt="Profile Pic" />
               <b>
                 <p className="username">{author.username}</p>
               </b>

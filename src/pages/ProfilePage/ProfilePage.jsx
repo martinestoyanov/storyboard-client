@@ -9,7 +9,7 @@ export default class ProfilePage extends Component {
     // console.log(this.props.user);
     const {
       username,
-      //   pictureURL: pic,
+      pictureURL,
       email,
       stories,
       videos,
@@ -24,7 +24,7 @@ export default class ProfilePage extends Component {
             {/* Image URL does not work */}
             {/* "https://www.pngjoy.com/preview/c2q7b4g4u1u9p2_gray-circle-login-user-icon-png-transparent-png/" */}
             <img
-              src="https://cdn3.vectorstock.com/i/1000x1000/97/32/man-silhouette-profile-picture-vector-2139732.jpg"
+              src={pictureURL}
               alt="Profile pic"
             />
             <Link to={PATHS.EDITPROFILE}>

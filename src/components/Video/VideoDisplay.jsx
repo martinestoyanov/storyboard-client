@@ -55,7 +55,7 @@ export default class VideoDisplay extends Component {
         <div className="comment-info">
           {/* video author not currently being queried/passed */}
           <div className="user-info">
-            <img src={ProfilePic} alt="Profile Pic" />
+            <img src={user.pictureURL || ProfilePic} alt="Profile Pic" />
             <b>
               <p className="username">{user.username}</p>
             </b>
